@@ -21,3 +21,16 @@ model Dataset {
   path     String
   license  String
 }
+
+model DatasetAccess {
+  id        Int @id  @default(autoincrement())
+  userId    String
+  datasetId String
+  // 0 - Unknown
+  // 1 - Requested
+  // 2 - Rejected
+  // 3 - Accepted
+  status    Int @default(0)
+
+  @@unique([userId, datasetId])
+}
