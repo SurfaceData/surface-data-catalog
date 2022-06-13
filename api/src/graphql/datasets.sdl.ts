@@ -1,0 +1,41 @@
+export const schema = gql`
+  type Dataset {
+    id: String!
+    name: String!
+    language: String!
+    task: String!
+    path: String!
+    license: String!
+  }
+
+  type Query {
+    datasets: [Dataset!]! @requireAuth
+    dataset(id: String!): Dataset @requireAuth
+  }
+
+  input CreateDatasetInput {
+    id: String!
+    name: String!
+    language: String!
+    task: String!
+    path: String!
+    license: String!
+  }
+
+  input UpdateDatasetInput {
+    name: String
+    language: String
+    task: String
+    path: String
+    license: String
+  }
+
+  type Mutation {
+    createDataset(input: CreateDatasetInput!): Dataset!
+      @requireAuth(roles: ["admin", "steward"])
+    updateDataset(id: String!, input: UpdateDatasetInput!): Dataset!
+      @requireAuth(roles: ["admin", "steward"])
+    deleteDataset(id: String!): Dataset!
+      @requireAuth(roles: ["admin", "steward"])
+  }
+`
