@@ -12,3 +12,12 @@ model UserRoles {
   id    String @id
   role  String
 }
+
+model Dataset {
+  id       String @id
+  name     String
+  language String
+  task     String
+  path     String
+  license  String
+}
