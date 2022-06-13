@@ -5,7 +5,6 @@ import  DatasetAccessCell from 'src/components/DatasetAccessCell'
 
 const DatasetPanel = ({ dataset }) => {
   const { currentUser } = useAuth()
-  console.log(currentUser);
   return (
     <Panel header={dataset.name} bordered>
       <div>{dataset.language}</div>

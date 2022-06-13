@@ -24,8 +24,6 @@ export const schema = gql`
   }
 
   input UpdateDatasetAccessInput {
-    userId: String
-    datasetId: String
     status: Int
   }
 
@@ -33,11 +31,12 @@ export const schema = gql`
     requestDatasetAccess(input: RequestDatasetAccessInput!): DatasetAccess!
       @requireAuth
     createDatasetAccess(input: CreateDatasetAccessInput!): DatasetAccess!
-      @requireAuth
+      @requireAuth(roles: ["admin", "steward"])
     updateDatasetAccess(
       id: Int!
       input: UpdateDatasetAccessInput!
-    ): DatasetAccess! @requireAuth
-    deleteDatasetAccess(id: Int!): DatasetAccess! @requireAuth
+    ): DatasetAccess! @requireAuth(roles: ["admin", "steward"])
+    deleteDatasetAccess(id: Int!): DatasetAccess!
+      @requireAuth(roles: ["admin", "steward"])
   }
 `

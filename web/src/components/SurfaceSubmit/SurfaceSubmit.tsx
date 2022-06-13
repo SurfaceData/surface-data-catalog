@@ -2,8 +2,8 @@ import { Submit } from '@redwoodjs/forms'
 import styled, { css } from 'styled-components';
 
 const SurfaceSubmit = styled(Submit)<{
-  outline?: boolean,
-  rounded?: boolean,
+  outline?: Boolean,
+  rounded?: Boolean,
 }>`;
   position: relative;
   box-sizing: border-box;

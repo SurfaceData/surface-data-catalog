@@ -2,6 +2,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { Trans } from 'react-i18next'
 
+import DatasetAccessRequestsCell from 'src/components/DatasetAccessRequestsCell'
 import { SurfaceDetails, SurfaceSummary } from 'src/components/SurfaceDetails'
 import { SurfaceHeader2 } from 'src/components/SurfaceHeader2'
 
@@ -22,6 +23,8 @@ const StewardReviewPage = () => {
           </Trans>
         </div>
       </SurfaceDetails>
+
+      <DatasetAccessRequestsCell />
     </>
   )
 }

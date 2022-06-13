@@ -1,6 +1,6 @@
 import type { DatasetsQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { Panel, Stack } from 'rsuite'
+import { Stack } from 'rsuite'
 
 import DatasetPanel from 'src/components/DatasetPanel'
 
