@@ -1,0 +1,24 @@
+{
+  "Zebra's Unite Member": "Zebra's Unite Member",
+  "newPassword": "New Password",
+  "save": "Save",
+  "edit": "Edit",
+  "email": "Email",
+  "role": "Role",
+  "action": "Action",
+  "Info": "Info",
+  "Account Settings": "Account Settings",
+  "Manage Users": "Manage Users",
+  "Managing users means setting their permissions": {
+    "  Choose the right level of access for each user": "Managing users means setting their permissions.  Choose the right level of access for each user."
+  },
+  "fatalErrorPage": "Something went wrong",
+  "homeAuthenticated": "Authenticated View",
+  "homeUnauthenticated": "Unauthenticated View",
+  "notfoundpageMessage": "404 Page Not Found",
+  "Login": "Login",
+  "password": "Password",
+  "Sign Up": "Sign Up",
+  "Steward Tasks": "Steward Tasks",
+  "Stewards help look after the community and all associated datasets": "Stewards help look after the community and all associated datasets."
+}

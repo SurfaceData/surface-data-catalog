@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  scd-web:
+    build:
+      context: .
+      dockerfile: ./web/Dockerfile
+    container_name: sdc-web
+    expose:
+      - "8910"
+    networks:
+      - hosting
+    environment:
+      - API_URLhttps://collector.surface-coop.com/api
+      - LETSENCRYPT_HOST=collector.surface-coop.com
+      - VIRTUAL_HOST=collector.surface-coop.com
+      - VIRTUAL_PATH=/
+      - VIRTUAL_PORT=8910
+
+  sdc-api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    container_name: sdc-api
+    networks:
+      - hosting
+    expose:
+      - "8911"
+    volumes:
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+    environment:
+      - AWS_PROFILE=sdc-collector-app
+      - LETSENCRYPT_HOST=collector.surface-coop.com
+      - VIRTUAL_HOST=collector.surface-coop.com
+      - VIRTUAL_PATH=/api
+      - VIRTUAL_PORT=8911
+
+networks:
+  hosting:
+    name: hosting
+    external: true

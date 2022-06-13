@@ -1,0 +1,9 @@
+[web]
+title = "Surface RedwoodTemplate"
+port = 8910
+apiUrl = "${API_URL:/api}"
+includeEnvironmentVariables = []
+[api]
+port = 8911
+[browser]
+open = true
