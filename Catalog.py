@@ -52,8 +52,9 @@ class SurfacePublicDatasetConfig(datasets.BuilderConfig):
 
         self.source_language = source_language
         self.target_language = target_language
+        langpair = "%s_%s" %(source_language, target_language)
         self.data_url = _BASE_URL_FORMAT_STR.format(
-                lang_pair=lang_pair)
+                langpair=langpair)
         self.apikey = 'placeholder'
 
 
