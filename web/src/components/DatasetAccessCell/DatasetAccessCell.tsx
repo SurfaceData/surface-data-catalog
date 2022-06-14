@@ -2,6 +2,7 @@ import type { FindDatasetAccessQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import DatasetAccessForm from 'src/components/DatasetAccessForm'
+import DownloadLinkCell from 'src/components/DownloadLinkCell'
 
 export const QUERY = gql`
   query FindDatasetAccessQuery($userId: String!, $datasetId: String!) {
@@ -25,11 +26,19 @@ export const Failure = ({ error }: CellFailureProps) => (
 
 export const Success = ({
   datasetAccess,
+  datasetId,
 }: CellSuccessProps<FindDatasetAccessQuery>) => {
   const accessLabels = {
     1: 'Requested',
     2: 'Rejected',
     3: 'Granted',
   }
-  return <div>Request Status: {accessLabels[datasetAccess.status]}</div>
+  return (
+    <div>
+      <div>Request Status: {accessLabels[datasetAccess.status]}</div>
+      {datasetAccess.status === 3 && (
+        <DownloadLinkCell datasetId={datasetId} />
+      )}
+    </div>
+  )
 }
