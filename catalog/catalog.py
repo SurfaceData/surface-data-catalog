@@ -54,6 +54,7 @@ class SurfacePublicDatasetConfig(datasets.BuilderConfig):
         self.target_language = target_language
         self.data_url = _BASE_URL_FORMAT_STR.format(
                 lang_pair=lang_pair)
+        self.apikey = 'placeholder'
 
 
 class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
@@ -83,7 +84,8 @@ class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
                     )
 
     def _split_generators(self, dl_manager):
-        download_url = f"{self.config.data_url}&apikey={self.use_auth_token}"
+        download_url = f"{self.config.data_url}&apikey={self.config.apikey}"
+        print(download_url)
         data_file = dl_manager.download_and_extract(
                 {"data_file": download_url})
         return [
