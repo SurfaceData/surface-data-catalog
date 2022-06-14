@@ -4,16 +4,17 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import DatasetsCell from 'src/components/DatasetsCell'
+import UserApiKeyCell from 'src/components/UserApiKeyCell'
 
 const HomePage = () => {
   const { isAuthenticated, currentUser, hasRole } = useAuth()
-  console.log(currentUser)
-  console.log(hasRole('admin'))
-
   return (
     <>
       {isAuthenticated ? (
-        <DatasetsCell />
+        <div>
+          <UserApiKeyCell />
+          <DatasetsCell />
+        </div>
       ) : (
         <div>
           <Trans i18nKey="homeUnauthenticated">Unauthenticated View</Trans>

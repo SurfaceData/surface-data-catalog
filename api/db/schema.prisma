@@ -34,3 +34,10 @@ model DatasetAccess {
 
   @@unique([userId, datasetId])
 }
+
+model UserApiKey {
+  id   String @id
+  key  String @unique
+
+  @@index([key])
+}
