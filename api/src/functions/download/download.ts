@@ -80,15 +80,6 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   }
 
   const url = await pathSigner.getSignedPath(dataset.path)
-  /*
-  const command = new GetObjectCommand({
-    Key: dataset,
-    Bucket: 'sdc-collector-access-prbrqde7w7gcccefnx9s44wy1txzrapn1b-s3alias',
-  })
-
-  const url = await getSignedUrl(s3client, command, { expiresIn: 3600 })
-  */
-
   return {
     statusCode: 302,
     headers: {

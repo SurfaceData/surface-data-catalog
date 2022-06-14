@@ -1,4 +1,5 @@
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
 export class AWSPathSigner {
   client: S3Client
@@ -14,10 +15,10 @@ export class AWSPathSigner {
   async getSignedPath(path: string): string {
     const command = new GetObjectCommand({
       Key: path,
-      Bucket: bucket,
+      Bucket: this.bucket,
     })
 
-    return await getSignedUrl(s3client, command, { expiresIn: 3600 })
+    return await getSignedUrl(this.client, command, { expiresIn: 3600 })
   }
 }
 
