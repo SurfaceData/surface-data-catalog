@@ -55,6 +55,13 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     }
   }
   if (datasetAccess.status != 3) {
+    await db.downloadLog.create({
+      data: {
+        userId: userApiKey.id,
+        datasetId: datasetId,
+        statusCode: 403,
+      },
+    })
     return {
       statusCode: 403,
     }
@@ -64,6 +71,13 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     where: { id: datasetId },
   })
   if (!dataset) {
+    await db.downloadLog.create({
+      data: {
+        userId: userApiKey.id,
+        datasetId: datasetId,
+        statusCode: 404,
+      },
+    })
     return {
       statusCode: 404,
     }
@@ -80,6 +94,13 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   }
 
   const url = await pathSigner.getSignedPath(dataset.path)
+  await db.downloadLog.create({
+    data: {
+      userId: userApiKey.id,
+      datasetId: datasetId,
+      statusCode: 302,
+    },
+  })
   return {
     statusCode: 302,
     headers: {

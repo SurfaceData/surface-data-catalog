@@ -18,11 +18,13 @@ const Routes = () => {
         <Set wrap={ProfileLayout}>
           <Route path="/profile/info" page={ProfileInfoPage} name="profileInfo" />
           <Route path="/profile/account-settings" page={ProfileAccountSettingsPage} name="profileAccountSettings" />
+          <Route path="/profile/download-logs" page={ProfileDownloadLogsPage} name="profileDownloadLogs" />
         </Set>
       </Private>
       <Private unauthenticated="home" roles={['admin', 'steward']}>
         <Set wrap={StewardLayout}>
           <Route path="/steward/review" page={StewardReviewPage} name="stewardReview" />
+          <Route path="/steward/download-logs" page={DownloadLogsPage} name="stewardDownloadLogs" />
         </Set>
         <Set wrap={DatasetsLayout}>
           <Route path="/datasets/new" page={DatasetNewDatasetPage} name="newDataset" />

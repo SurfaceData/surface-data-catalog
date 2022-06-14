@@ -1,4 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
+import FileDownloadIcon from '@rsuite/icons/FileDownload';
 import SettingIcon from '@rsuite/icons/Setting'
 import UserInfoIcon from '@rsuite/icons/UserInfo'
 import { useState } from 'react'
@@ -48,6 +49,16 @@ const ProfileLayout = ({ children }: ProfileLayoutProps) => {
                     Account Settings
                   </Trans>
                 </Nav.Item>
+                <Nav.Item
+                  as={RedwoodLink}
+                  to={routes.profileDownloadLogs()}
+                  icon={<FileDownloadIcon />}
+                >
+                  <Trans i18nkey="layouts.downloadLogs">
+                    Download Logs
+                  </Trans>
+                </Nav.Item>
+
               </Nav>
             </Sidenav.Body>
           </Sidenav>

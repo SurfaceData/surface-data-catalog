@@ -1,4 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
+import FileDownloadIcon from '@rsuite/icons/FileDownload'
 import PeoplesIcon from '@rsuite/icons/Peoples'
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -37,6 +38,15 @@ const StewardLayout = ({ children }: StewardLayoutProps) => {
                   icon={<PeoplesIcon />}
                 >
                   <Trans i18nKey="layouts.stewardReview">Review</Trans>
+                </Nav.Item>
+                <Nav.Item
+                  as={RedwoodLink}
+                  to={routes.stewardDownloadLogs()}
+                  icon={<FileDownloadIcon />}
+                >
+                  <Trans i18nkey="layouts.downloadLogs">
+                    Download Logs
+                  </Trans>
                 </Nav.Item>
               </Nav>
             </Sidenav.Body>

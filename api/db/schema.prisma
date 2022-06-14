@@ -41,3 +41,14 @@ model UserApiKey {
 
   @@index([key])
 }
+
+model DownloadLog {
+  id         Int @id @default(autoincrement())
+  userId     String
+  datasetId  String
+  // 0 - Unknown
+  // 1 - Accepted
+  // 2 - Rejected
+  statusCode Int
+  createdAt  DateTime @default(now())
+}
