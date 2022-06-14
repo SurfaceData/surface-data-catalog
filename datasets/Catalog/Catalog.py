@@ -36,7 +36,7 @@ class SurfacePublicDatasetConfig(datasets.BuilderConfig):
     """BuildConfig for Surface Public Datasets."""
 
     def __init__(self, source_language, target_language, **kwargs):
-        """BuilderConfig for Surface Public Datsets.
+        """BuilderConfig for Surface Public Datasets.
 
         Args:
           **kwargs: Keyword arguments forwarded to the BuilderConfig.
