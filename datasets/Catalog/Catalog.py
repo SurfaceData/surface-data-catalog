@@ -14,24 +14,31 @@
 # Lint as: python3
 """SDC: The Surface Data Collective Dataset."""
 
-import csv
-import urllib.request as request
 import json
-import os
+config_json = """
+{
+  "citation": "",
+  "description": "Surface Coop generated datasets",
+  "url": "https://catalog.surface-coop.com/api/download?dataset=igboapi-{langpair}",
+  "subsets": [
+    {
+      "source_language": "en",
+      "target_language": "ig"
+    },
+    {
+      "source_language": "ig",
+      "target_language": "en"
+    }
+  ]
+}
+"""
+config = json.load(config_json)
+
+import csv
 
 import datasets
 
 logger = datasets.logging.get_logger(__name__)
-
-print(os.getcwd())
-module_path = os.path.realpath(__file__)
-module_dir = os.path.dirname(module_path)
-print(module_dir)
-print(os.listdir(module_dir))
-
-with request.urlopen('https://huggingface.co/datasets/SurfaceData/Catalog/raw/main/config.json') as response:
-    source = response.read()
-    config = json.load(source)
 
 _CITATION = config['citation']
 _DESCRIPTION = config['description']
