@@ -23,18 +23,21 @@ import datasets
 
 logger = datasets.logging.get_logger(__name__)
 
-with request.urlopen('https://huggingface.co/datasets/SurfaceData/Catalog/raw/main/config.json') as response:
-    source = response.read()
-    config = json.load(source)
+print(os.getcwd())
+print(os.path.realpath(__file__)
 
-_CITATION = config['citation']
-_DESCRIPTION = config['description']
-_BASE_URL_FORMAT_STR = config['url']
+        with request.urlopen('https://huggingface.co/datasets/SurfaceData/Catalog/raw/main/config.json') as response:
+        source = response.read()
+        config = json.load(source)
 
-class SurfacePublicDatasetConfig(datasets.BuilderConfig):
-    """BuildConfig for Surface Public Datasets."""
+        _CITATION = config['citation']
+        _DESCRIPTION = config['description']
+        _BASE_URL_FORMAT_STR = config['url']
 
-    def __init__(self, source_language, target_language, **kwargs):
+        class SurfacePublicDatasetConfig(datasets.BuilderConfig):
+        """BuildConfig for Surface Public Datasets."""
+
+        def __init__(self, source_language, target_language, **kwargs):
         """BuilderConfig for Surface Public Datasets.
 
         Args:
@@ -45,31 +48,31 @@ class SurfacePublicDatasetConfig(datasets.BuilderConfig):
         description = ("Translation dataset for %s.") % (lang_pair)
 
         super(SurfacePublicDatasetConfig,
-                self).__init__(name=lang_pair,
-                        description=description,
-                        **kwargs)
+            self).__init__(name=lang_pair,
+                description=description,
+                **kwargs)
 
-        self.source_language = source_language
-        self.target_language = target_language
-        langpair = "%s_%s" %(source_language, target_language)
-        self.data_url = _BASE_URL_FORMAT_STR.format(
+            self.source_language = source_language
+            self.target_language = target_language
+            langpair = "%s_%s" %(source_language, target_language)
+            self.data_url = _BASE_URL_FORMAT_STR.format(
                 langpair=langpair)
-        self.apikey = 'placeholder'
+            self.apikey = 'placeholder'
 
 
-class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
-    """SDC: The Surface Data Collective dataset. Version 22.06."""
+            class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
+            """SDC: The Surface Data Collective dataset. Version 22.06."""
 
-    BUILDER_CONFIGS = [
-            SurfacePublicDatasetConfig(
-                source_language=subset['source_language'],
-                target_language=subset['target_language']) for subset in config['subsets']
-            ]
+            BUILDER_CONFIGS = [
+                SurfacePublicDatasetConfig(
+                    source_language=subset['source_language'],
+                    target_language=subset['target_language']) for subset in config['subsets']
+                ]
 
-    def _info(self):
-        source_language = self.config.source_language
-        target_language = self.config.target_language
-        return datasets.DatasetInfo(
+            def _info(self):
+            source_language = self.config.source_language
+            target_language = self.config.target_language
+            return datasets.DatasetInfo(
                 description=_DESCRIPTION,
                 features=datasets.Features(
                     {
