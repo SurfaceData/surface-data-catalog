@@ -32,7 +32,7 @@ config_json = """
   ]
 }
 """
-config = json.load(config_json)
+config = json.loads(config_json)
 
 import csv
 
