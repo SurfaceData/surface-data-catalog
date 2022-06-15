@@ -14,7 +14,7 @@ export default async ({ args }) => {
       citation: '',
       description: '',
       license: dataset.license,
-      url: `${args.api_url}/api/download?dataset={dataset}`,
+      url: `${args.api_url}/api/download?dataset=${dataset.id}-{langpair}`,
       subsets: dataset.subsets.map((subset) => {
         const languages = subset.language.split('_')
         return {
