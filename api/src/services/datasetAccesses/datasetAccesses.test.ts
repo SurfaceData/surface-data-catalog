@@ -26,7 +26,10 @@ describe('datasetAccesses', () => {
   scenario(
     'returns a single datasetAccess',
     async (scenario: StandardScenario) => {
-      const result = await datasetAccess({ id: scenario.datasetAccess.one.id })
+      const result = await datasetAccess({
+        userId: scenario.datasetAccess.one.userId,
+        datasetId: scenario.datasetAccess.one.datasetId,
+      })
 
       expect(result).toEqual(scenario.datasetAccess.one)
     }
@@ -42,7 +45,10 @@ describe('datasetAccesses', () => {
   })
 
   scenario('updates a datasetAccess', async (scenario: StandardScenario) => {
-    const original = await datasetAccess({ id: scenario.datasetAccess.one.id })
+    const original = await datasetAccess({
+      userId: scenario.datasetAccess.one.userId,
+      datasetId: scenario.datasetAccess.one.datasetId,
+    })
     const result = await updateDatasetAccess({
       id: original.id,
       input: { userId: 'String2' },
@@ -55,7 +61,11 @@ describe('datasetAccesses', () => {
     const original = await deleteDatasetAccess({
       id: scenario.datasetAccess.one.id,
     })
-    const result = await datasetAccess({ id: original.id })
+
+    const result = await datasetAccess({
+      userId: scenario.datasetAccess.one.userId,
+      datasetId: scenario.datasetAccess.one.datasetId,
+    })
 
     expect(result).toEqual(null)
   })

@@ -56,11 +56,23 @@ describe('downloadDataset function', () => {
     expect(response.statusCode).toBe(401)
   })
 
+  scenario('Should reject unknown dataset', async (scenario) => {
+    const httpEvent = mockHttpEvent({
+      queryStringParameters: {
+        apikey: 'abcf',
+        dataset: 'testdataset',
+      },
+    })
+
+    const response = await handler(httpEvent, null)
+    expect(response.statusCode).toBe(404)
+  })
+
   scenario('Should reject unknown access rights', async (scenario) => {
     const httpEvent = mockHttpEvent({
       queryStringParameters: {
         apikey: 'abcd',
-        dataset: 'testdataset',
+        dataset: 'testdataset-t',
       },
     })
 
@@ -72,7 +84,7 @@ describe('downloadDataset function', () => {
     const httpEvent = mockHttpEvent({
       queryStringParameters: {
         apikey: 'abc3',
-        dataset: 'testdataset',
+        dataset: 'testdataset-t',
       },
     })
 
@@ -84,7 +96,7 @@ describe('downloadDataset function', () => {
     const httpEvent = mockHttpEvent({
       queryStringParameters: {
         apikey: 'abce',
-        dataset: 'testdataset',
+        dataset: 'testdataset-t',
       },
     })
 
@@ -92,28 +104,18 @@ describe('downloadDataset function', () => {
     expect(response.statusCode).toBe(403)
   })
 
-  scenario('Should reject unknown dataset', async (scenario) => {
-    const httpEvent = mockHttpEvent({
-      queryStringParameters: {
-        apikey: 'abcf',
-        dataset: 'mydataset',
-      },
-    })
-
-    const response = await handler(httpEvent, null)
-    expect(response.statusCode).toBe(404)
-  })
-
   scenario('Should return redirect', async (scenario) => {
     const httpEvent = mockHttpEvent({
       queryStringParameters: {
         apikey: 'abcf',
-        dataset: 'testdataset',
+        dataset: 'testdataset-t',
       },
     })
 
     const response = await handler(httpEvent, null)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.Location).toBe(`mock${scenario.dataset.test.path}`)
+    expect(response.headers.Location).toBe(
+      `mock${scenario.datasetSubset.test.path}`
+    )
   })
 })

@@ -3008,6 +3008,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@blakek/curry@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@blakek/curry@npm:2.0.2"
+  checksum: 77c15764b78b8e559960fe7c5a393b66aded214bf83b7a3b13583b560752ce0191a43e72e4d9b7011c3342c29ec403d9a305e28c861dfb449253f7074cb805ca
+  languageName: node
+  linkType: hard
+
+"@blakek/deep@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@blakek/deep@npm:2.2.0"
+  dependencies:
+    "@blakek/curry": ^2.0.2
+    pathington: ^1.1.7
+  checksum: 96d0a4d0e4c8dc4269438dbfca5b3e6d1521f0f28b37ad87c57b7dc8a24272fce430b57ca39d2294198d45c13093907c7e27b52fb1725ba8b7b12ec0251d7161
+  languageName: node
+  linkType: hard
+
 "@cnakazawa/watch@npm:^1.0.3":
   version: 1.0.4
   resolution: "@cnakazawa/watch@npm:1.0.4"
@@ -20160,6 +20177,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"p-limit@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "p-limit@npm:4.0.0"
+  dependencies:
+    yocto-queue: ^1.0.0
+  checksum: a56af34a77f8df2ff61ddfb29431044557fcbcb7642d5a3233143ebba805fc7306ac1d448de724352861cb99de934bc9ab74f0d16fe6a5460bdbdf938de875ad
+  languageName: node
+  linkType: hard
+
 "p-locate@npm:^2.0.0":
   version: 2.0.0
   resolution: "p-locate@npm:2.0.0"
@@ -20566,6 +20592,13 @@ __metadata:
   version: 4.0.0
   resolution: "path-type@npm:4.0.0"
   checksum: 666f6973f332f27581371efaf303fd6c272cc43c2057b37aa99e3643158c7e4b2626549555d88626e99ea9e046f82f32e41bbde5f1508547e9a11b149b52387c
+  languageName: node
+  linkType: hard
+
+"pathington@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "pathington@npm:1.1.7"
+  checksum: fc7ec7208e3dd5014364f68b2b48d7d37d1afdc3530e539464795629db9865c07c0dbb3d18351328d6b1033436bb32d9addaf11dd864901fccb3823ac6ce97e7
   languageName: node
   linkType: hard
 
@@ -22854,6 +22887,7 @@ __metadata:
     react-responsive: ^9.0.0-beta.10
     rsuite: ^5.11.0
     styled-components: ^5.3.5
+    template-file: ^6.0.1
   languageName: unknown
   linkType: soft
 
@@ -24609,6 +24643,20 @@ __metadata:
     temp-dir: ^1.0.0
     uuid: ^3.3.2
   checksum: 91a6b0dd85a5d606db3e1326b23830c2c14b7a249a26a1e42a023af597edeedef338a3b37a38b6bbd22cceee4fff2108545cfb65fca1ab8289927cf9501d6c9e
+  languageName: node
+  linkType: hard
+
+"template-file@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "template-file@npm:6.0.1"
+  dependencies:
+    "@blakek/deep": ^2.2.0
+    glob: ^7.1.6
+    mkdirp: ^1.0.4
+    p-limit: ^4.0.0
+  bin:
+    template-file: dist/cli.js
+  checksum: 4057491fc62c38d4f8303cf419c62ce0163b45074c09de0511758d9a02db584691fbba9214f17e6200adacd3107d3178239e2022974fb85858f1bd1749f556be
   languageName: node
   linkType: hard
 
@@ -27081,6 +27129,13 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: dceb44c28578b31641e13695d200d34ec4ab3966a5729814d5445b194933c096b7ced71494ce53a0e8820685d1d010df8b2422e5bf2cdea7e469d97ffbea306f
+  languageName: node
+  linkType: hard
+
+"yocto-queue@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "yocto-queue@npm:1.0.0"
+  checksum: 856117aa15cf5103d2a2fb173f0ab4acb12b4b4d0ed3ab249fdbbf612e55d1cadfd27a6110940e24746fb0a78cf640b522cc8bca76f30a3b00b66e90cf82abe0
   languageName: node
   linkType: hard
 

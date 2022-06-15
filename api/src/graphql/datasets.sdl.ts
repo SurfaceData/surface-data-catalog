@@ -2,9 +2,7 @@ export const schema = gql`
   type Dataset {
     id: String!
     name: String!
-    language: String!
     task: String!
-    path: String!
     license: String!
   }
 
@@ -16,17 +14,13 @@ export const schema = gql`
   input CreateDatasetInput {
     id: String!
     name: String!
-    language: String!
     task: String!
-    path: String!
     license: String!
   }
 
   input UpdateDatasetInput {
     name: String
-    language: String
     task: String
-    path: String
     license: String
   }
 

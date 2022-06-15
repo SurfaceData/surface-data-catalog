@@ -1,4 +1,5 @@
 import { Private, Router, Route, Set } from '@redwoodjs/router'
+import DatasetSubsetsLayout from 'src/layouts/DatasetSubsetsLayout'
 import DatasetsLayout from 'src/layouts/DatasetsLayout'
 
 import AdminLayout from 'src/layouts/AdminLayout'
@@ -31,6 +32,12 @@ const Routes = () => {
           <Route path="/datasets/{id}/edit" page={DatasetEditDatasetPage} name="editDataset" />
           <Route path="/datasets/{id}" page={DatasetDatasetPage} name="dataset" />
           <Route path="/datasets" page={DatasetDatasetsPage} name="datasets" />
+        </Set>
+        <Set wrap={DatasetSubsetsLayout}>
+          <Route path="/dataset-subsets/new" page={DatasetSubsetNewDatasetSubsetPage} name="newDatasetSubset" />
+          <Route path="/dataset-subsets/{id}/edit" page={DatasetSubsetEditDatasetSubsetPage} name="editDatasetSubset" />
+          <Route path="/dataset-subsets/{id}" page={DatasetSubsetDatasetSubsetPage} name="datasetSubset" />
+          <Route path="/dataset-subsets" page={DatasetSubsetDatasetSubsetsPage} name="datasetSubsets" />
         </Set>
       </Private>
       <Private unauthenticated="home" roles="admin">

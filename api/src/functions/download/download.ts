@@ -30,7 +30,7 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       statusCode: 400,
     }
   }
-  const datasetId = event.queryStringParameters.dataset
+  const datasetSubsetId = event.queryStringParameters.dataset
   const apikey = event.queryStringParameters.apikey
 
   const userApiKey = await db.userApiKey.findUnique({
@@ -41,11 +41,21 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       statusCode: 401,
     }
   }
+  const datasetSubset = await db.datasetSubset.findUnique({
+    where: {
+      id: datasetSubsetId,
+    },
+  })
+  if (!datasetSubset) {
+    return {
+      statusCode: 404,
+    }
+  }
   const datasetAccess = await db.datasetAccess.findUnique({
     where: {
       userId_datasetId: {
         userId: userApiKey.id,
-        datasetId: datasetId,
+        datasetId: datasetSubset.datasetId,
       },
     },
   })
@@ -58,28 +68,12 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     await db.downloadLog.create({
       data: {
         userId: userApiKey.id,
-        datasetId: datasetId,
+        datasetId: datasetSubsetId,
         statusCode: 403,
       },
     })
     return {
       statusCode: 403,
-    }
-  }
-
-  const dataset = await db.dataset.findUnique({
-    where: { id: datasetId },
-  })
-  if (!dataset) {
-    await db.downloadLog.create({
-      data: {
-        userId: userApiKey.id,
-        datasetId: datasetId,
-        statusCode: 404,
-      },
-    })
-    return {
-      statusCode: 404,
     }
   }
 
@@ -93,11 +87,11 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     }
   }
 
-  const url = await pathSigner.getSignedPath(dataset.path)
+  const url = await pathSigner.getSignedPath(datasetSubset.path)
   await db.downloadLog.create({
     data: {
       userId: userApiKey.id,
-      datasetId: datasetId,
+      datasetId: datasetSubsetId,
       statusCode: 302,
     },
   })

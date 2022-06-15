@@ -12,9 +12,7 @@ export const QUERY = gql`
     dataset: dataset(id: $id) {
       id
       name
-      language
       task
-      path
       license
     }
   }
@@ -24,9 +22,7 @@ const UPDATE_DATASET_MUTATION = gql`
     updateDataset(id: $id, input: $input) {
       id
       name
-      language
       task
-      path
       license
     }
   }
@@ -34,9 +30,9 @@ const UPDATE_DATASET_MUTATION = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error.message}</div>
-)
+  export const Failure = ({ error }: CellFailureProps) => (
+    <div className="rw-cell-error">{error.message}</div>
+  )
 
 export const Success = ({ dataset }: CellSuccessProps<EditDatasetById>) => {
   const [updateDataset, { loading, error }] = useMutation(UPDATE_DATASET_MUTATION, {

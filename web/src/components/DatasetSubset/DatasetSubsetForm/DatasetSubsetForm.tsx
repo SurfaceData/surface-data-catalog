@@ -7,9 +7,22 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 
-const DatasetForm = (props) => {
+
+
+const DatasetSubsetForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.dataset?.id)
+
+
+
+
+
+
+
+
+
+
+
+    props.onSave(data, props?.datasetSubset?.id)
   }
 
   return (
@@ -23,77 +36,67 @@ const DatasetForm = (props) => {
         />
 
         <Label
-          name="id"
+          name="language"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Id
+          Language
         </Label>
 
         <TextField
-          name="id"
-          defaultValue={props.dataset?.name}
+          name="language"
+          defaultValue={props.datasetSubset?.language}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
+
+
+        <FieldError name="language" className="rw-field-error" />
 
         <Label
-          name="name"
+          name="path"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Name
+          Path
         </Label>
 
         <TextField
-          name="name"
-          defaultValue={props.dataset?.name}
+          name="path"
+          defaultValue={props.datasetSubset?.path}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="name" className="rw-field-error" />
+
+        <FieldError name="path" className="rw-field-error" />
 
         <Label
-          name="task"
+          name="datasetId"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Task
+          Dataset id
         </Label>
 
         <TextField
-          name="task"
-          defaultValue={props.dataset?.task}
+          name="datasetId"
+          defaultValue={props.datasetSubset?.datasetId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="task" className="rw-field-error" />
 
-        <Label
-          name="license"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          License
-        </Label>
-
-        <TextField
-          name="license"
-          defaultValue={props.dataset?.license}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="license" className="rw-field-error" />
+        <FieldError name="datasetId" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Submit
+            disabled={props.loading}
+            className="rw-button rw-button-blue"
+          >
             Save
           </Submit>
         </div>
@@ -102,4 +105,4 @@ const DatasetForm = (props) => {
   )
 }
 
-export default DatasetForm
+export default DatasetSubsetForm

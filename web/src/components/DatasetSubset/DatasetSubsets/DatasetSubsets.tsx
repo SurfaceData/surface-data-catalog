@@ -4,11 +4,11 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
 
-import { QUERY } from 'src/components/Dataset/DatasetsCell'
+import { QUERY } from 'src/components/DatasetSubset/DatasetSubsetsCell'
 
-const DELETE_DATASET_MUTATION = gql`
-  mutation DeleteDatasetMutation($id: String!) {
-    deleteDataset(id: $id) {
+const DELETE_DATASET_SUBSET_MUTATION = gql`
+  mutation DeleteDatasetSubsetMutation($id: String!) {
+    deleteDatasetSubset(id: $id) {
       id
     }
   }
@@ -53,10 +53,10 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const DatasetsList = ({ datasets }) => {
-  const [deleteDataset] = useMutation(DELETE_DATASET_MUTATION, {
+const DatasetSubsetsList = ({ datasetSubsets }) => {
+  const [deleteDatasetSubset] = useMutation(DELETE_DATASET_SUBSET_MUTATION, {
     onCompleted: () => {
-      toast.success('Dataset deleted')
+      toast.success('DatasetSubset deleted')
     },
     onError: (error) => {
       toast.error(error.message)
@@ -69,8 +69,8 @@ const DatasetsList = ({ datasets }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete dataset ' + id + '?')) {
-      deleteDataset({ variables: { id } })
+    if (confirm('Are you sure you want to delete datasetSubset ' + id + '?')) {
+      deleteDatasetSubset({ variables: { id } })
     }
   }
 
@@ -80,42 +80,40 @@ const DatasetsList = ({ datasets }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Name</th>
             <th>Language</th>
-            <th>Task</th>
             <th>Path</th>
-            <th>License</th>
+            <th>Dataset id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {datasets.map((dataset) => (
-            <tr key={dataset.id}>
-              <td>{truncate(dataset.id)}</td>
-              <td>{truncate(dataset.name)}</td>
-              <td>{truncate(dataset.task)}</td>
-              <td>{truncate(dataset.license)}</td>
+          {datasetSubsets.map((datasetSubset) => (
+            <tr key={datasetSubset.id}>
+              <td>{truncate(datasetSubset.id)}</td>
+              <td>{truncate(datasetSubset.language)}</td>
+              <td>{truncate(datasetSubset.path)}</td>
+              <td>{truncate(datasetSubset.datasetId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.dataset({ id: dataset.id })}
-                    title={'Show dataset ' + dataset.id + ' detail'}
+                    to={routes.datasetSubset({ id: datasetSubset.id })}
+                    title={'Show datasetSubset ' + datasetSubset.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editDataset({ id: dataset.id })}
-                    title={'Edit dataset ' + dataset.id}
+                    to={routes.editDatasetSubset({ id: datasetSubset.id })}
+                    title={'Edit datasetSubset ' + datasetSubset.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
-                    title={'Delete dataset ' + dataset.id}
+                    title={'Delete datasetSubset ' + datasetSubset.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(dataset.id)}
+                    onClick={() => onDeleteClick(datasetSubset.id)}
                   >
                     Delete
                   </button>
@@ -129,4 +127,4 @@ const DatasetsList = ({ datasets }) => {
   )
 }
 
-export default DatasetsList
+export default DatasetSubsetsList

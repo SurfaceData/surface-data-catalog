@@ -7,7 +7,6 @@ const DatasetPanel = ({ dataset }) => {
   const { currentUser } = useAuth()
   return (
     <Panel header={dataset.name} bordered>
-      <div>{dataset.language}</div>
       <div>{dataset.task}</div>
       <div>{dataset.license}</div>
       <DatasetAccessCell userId={currentUser.sub} datasetId={dataset.id} />

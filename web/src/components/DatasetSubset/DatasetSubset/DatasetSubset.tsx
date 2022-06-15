@@ -4,9 +4,9 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
-const DELETE_DATASET_MUTATION = gql`
-  mutation DeleteDatasetMutation($id: String!) {
-    deleteDataset(id: $id) {
+const DELETE_DATASET_SUBSET_MUTATION = gql`
+  mutation DeleteDatasetSubsetMutation($id: String!) {
+    deleteDatasetSubset(id: $id) {
       id
     }
   }
@@ -45,11 +45,11 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const Dataset = ({ dataset }) => {
-  const [deleteDataset] = useMutation(DELETE_DATASET_MUTATION, {
+const DatasetSubset = ({ datasetSubset }) => {
+  const [deleteDatasetSubset] = useMutation(DELETE_DATASET_SUBSET_MUTATION, {
     onCompleted: () => {
-      toast.success('Dataset deleted')
-      navigate(routes.datasets())
+      toast.success('DatasetSubset deleted')
+      navigate(routes.datasetSubsets())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -57,8 +57,8 @@ const Dataset = ({ dataset }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete dataset ' + id + '?')) {
-      deleteDataset({ variables: { id } })
+    if (confirm('Are you sure you want to delete datasetSubset ' + id + '?')) {
+      deleteDatasetSubset({ variables: { id } })
     }
   }
 
@@ -66,29 +66,29 @@ const Dataset = ({ dataset }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">Dataset {dataset.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">DatasetSubset {datasetSubset.id} Detail</h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
-              <td>{dataset.id}</td>
+              <td>{datasetSubset.id}</td>
             </tr><tr>
-              <th>Name</th>
-              <td>{dataset.name}</td>
+              <th>Language</th>
+              <td>{datasetSubset.language}</td>
             </tr><tr>
-              <th>Task</th>
-              <td>{dataset.task}</td>
+              <th>Path</th>
+              <td>{datasetSubset.path}</td>
             </tr><tr>
-              <th>License</th>
-              <td>{dataset.license}</td>
+              <th>Dataset id</th>
+              <td>{datasetSubset.datasetId}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.editDataset({ id: dataset.id })}
+          to={routes.editDatasetSubset({ id: datasetSubset.id })}
           className="rw-button rw-button-blue"
         >
           Edit
@@ -96,7 +96,7 @@ const Dataset = ({ dataset }) => {
         <button
           type="button"
           className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(dataset.id)}
+          onClick={() => onDeleteClick(datasetSubset.id)}
         >
           Delete
         </button>
@@ -105,4 +105,4 @@ const Dataset = ({ dataset }) => {
   )
 }
 
-export default Dataset
+export default DatasetSubset

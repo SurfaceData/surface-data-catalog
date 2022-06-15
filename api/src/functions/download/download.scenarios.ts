@@ -60,10 +60,18 @@ export const standard = defineScenario({
       data: {
         id: 'testdataset',
         name: 'Test Dataset',
-        language: 't',
         task: 'test',
-        path: '/some/path',
         license: 'cc-test',
+      },
+    },
+  },
+  datasetSubset: {
+    test: {
+      data: {
+        id: 'testdataset-t',
+        language: 't',
+        path: 'some/path',
+        datasetId: 'testdataset',
       },
     },
   },

@@ -22,11 +22,12 @@ const DatasetAccessReviewForm = ({ request }) => {
     ],
   })
   const onSubmit = (input) => {
+    console.log(input)
     updateAccess({
       variables: {
         id: request.id,
         input: {
-          status: input.statu,
+          status: parseInt(input.status),
         }
       }
     })
@@ -37,7 +38,7 @@ const DatasetAccessReviewForm = ({ request }) => {
       onSubmit={onSubmit}
       formMethods={formMethods}
     >
-      <SelectField name="status" value={request.status}>
+      <SelectField name="status" defaultValue={request.status}>
         <option value="1">Requested</option>
         <option value="2">Reject</option>
         <option value="3">Approve</option>

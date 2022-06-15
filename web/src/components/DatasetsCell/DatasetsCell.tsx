@@ -9,7 +9,6 @@ export const QUERY = gql`
     datasets {
       id
       name
-      language
       task
       license
     }

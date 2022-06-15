@@ -8,9 +8,7 @@ export const QUERY = gql`
     dataset: dataset(id: $id) {
       id
       name
-      language
       task
-      path
       license
     }
   }
@@ -18,11 +16,11 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Dataset not found</div>
+  export const Empty = () => <div>Dataset not found</div>
 
-export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error.message}</div>
-)
+  export const Failure = ({ error }: CellFailureProps) => (
+    <div className="rw-cell-error">{error.message}</div>
+  )
 
 export const Success = ({ dataset }: CellSuccessProps<FindDatasetById>) => {
   return <Dataset dataset={dataset} />

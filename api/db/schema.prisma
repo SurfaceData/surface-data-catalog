@@ -16,10 +16,17 @@ model UserRoles {
 model Dataset {
   id       String @id
   name     String
-  language String
   task     String
-  path     String
   license  String
+  subsets  DatasetSubset[]
+}
+
+model DatasetSubset {
+  id        String @id
+  language  String
+  path      String
+  dataset   Dataset @relation(fields: [datasetId], references: [id])
+  datasetId String
 }
 
 model DatasetAccess {
