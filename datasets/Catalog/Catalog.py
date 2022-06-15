@@ -15,7 +15,7 @@
 """SDC: The Surface Data Collective Dataset."""
 
 import csv
-import importlib.resources
+import urllib.request as request
 import json
 import os
 
@@ -23,9 +23,9 @@ import datasets
 
 logger = datasets.logging.get_logger(__name__)
 
-print(os.listdir())
-with importlib.resources.open_text('SurfaceData', 'config.json') as json_file:
-    config = json.load(json_file)
+with request.urlopen('https://huggingface.co/datasets/SurfaceData/Catalog/raw/main/config.json') as response:
+    source = response.read()
+    config = json.load(source)
 
 _CITATION = config['citation']
 _DESCRIPTION = config['description']
