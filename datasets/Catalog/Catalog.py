@@ -24,7 +24,10 @@ import datasets
 logger = datasets.logging.get_logger(__name__)
 
 print(os.getcwd())
-print(os.path.realpath(__file__))
+module_path = os.path.realpath(__file__)
+module_dir = os.path.dirname(module_path)
+print(module_dir)
+print(os.listdir(module_dir))
 
 with request.urlopen('https://huggingface.co/datasets/SurfaceData/Catalog/raw/main/config.json') as response:
     source = response.read()
