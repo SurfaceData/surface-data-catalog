@@ -30,6 +30,7 @@ export default async ({ args }) => {
       './datasets/task_dataset/task_dataset.py',
       data
     )
-    writeFileSync(`./datasets/${dataset.task}_${dataset.id}.py`, result)
+    const datasetPackage = `${dataset.task}_${dataset.id}`
+    writeFileSync(`./datasets/${datasetPackage}/${datasetPackage}.py`, result)
   })
 }
