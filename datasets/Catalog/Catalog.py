@@ -16,11 +16,13 @@
 
 import csv
 import json
+import os
 
 import datasets
 
 logger = datasets.logging.get_logger(__name__)
 
+print(os.listdir())
 with open('SurfaceData/config.json') as json_file:
     config = json.load(json_file)
 
