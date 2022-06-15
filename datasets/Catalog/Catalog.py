@@ -15,22 +15,18 @@
 """SDC: The Surface Data Collective Dataset."""
 
 import csv
+import json
 
 import datasets
 
 logger = datasets.logging.get_logger(__name__)
 
-_CITATION = """\
-        """
+with open('./config.json') as json_file:
+    config = json.load(json_file)
 
-_DESCRIPTION = """\
-        Surface Data Collective makes datasets.
-"""
-
-_BASE_URL_FORMAT_STR = (
-        "https://catalog.surface-coop.com/api/dataset?dataset=igboapi-{langpair}"
-        )
-
+_CITATION = config['citation']
+_DESCRIPTION = config['description']
+_BASE_URL_FORMAT_STR = config['url']
 
 class SurfacePublicDatasetConfig(datasets.BuilderConfig):
     """BuildConfig for Surface Public Datasets."""
@@ -62,8 +58,9 @@ class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
     """SDC: The Surface Data Collective dataset. Version 22.06."""
 
     BUILDER_CONFIGS = [
-            SurfacePublicDatasetConfig(source_language="en", target_language="ig"),
-            SurfacePublicDatasetConfig(source_language="ig", target_language="en"),
+            SurfacePublicDatasetConfig(
+                source_language=subset['source_language'],
+                target_language=subset['target_language']) for subset in config['subsets']
             ]
 
     def _info(self):

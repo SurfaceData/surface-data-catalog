@@ -1,0 +1,15 @@
+{
+  "citation": "",
+  "description": "Surface Coop generated datasets",
+  "url": "https://catalog.surface-coop.com/api/download?dataset=igboapi-{langpair}",
+  "subsets": [
+    {
+      "source_language": "en",
+      "target_language": "ig"
+    },
+    {
+      "source_language": "ig",
+      "target_language": "en"
+    }
+  ]
+}
