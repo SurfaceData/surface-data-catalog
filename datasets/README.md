@@ -42,3 +42,38 @@ dataset and update the hub as needed.
 Soon, we'll prepare a template that'll live in this repo which can be used as
 the basis for every dataset generated and then setup some automation to
 auto-create the repo, populate it, and then simplify pushing.
+
+## Automation Steps
+
+All steps require logging into Huggingface first:
+
+```sh
+huggingface-cli login
+```
+
+### Repo Creation and Setup
+
+These must be done before creating the dataset files.
+
+```sh
+huggingface-cli repo create task_dataset --type dataset --organization organization
+git remote add -f task_dataset https://path/to/hub`
+git subtree add --prefix datasets/task_dataset task_dataset main
+```
+
+### Repo Population and Update
+
+```sh
+yarn rw exec generate_dataset_scripts --api_url=deployed_api_url
+git commit -am "Creating dataset scripts"
+git subtree push --prefix datasets/task_dataset task_dataset main`
+```
+
+### Updating with changes
+
+```sh
+git subtree pull --prefix datasets/task_dataset task_dataset main`
+yarn rw exec generate_dataset_scripts --api_url=deployed_api_url
+git commit -am "Updating dataset scripts"
+git subtree push --prefix datasets/task_dataset task_dataset main`
+```
