@@ -21,7 +21,7 @@ import datasets
 
 logger = datasets.logging.get_logger(__name__)
 
-with open('config.json') as json_file:
+with open('SurfaceData/config.json') as json_file:
     config = json.load(json_file)
 
 _CITATION = config['citation']
