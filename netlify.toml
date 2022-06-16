@@ -16,9 +16,8 @@ functions = "api/dist/functions"
   port = 8888
 
 [[redirects]]
-  from = "/api"
+  from = "/api/*"
   to = "/.netlify/functions"
-  query = {apikey = ":apikey", dataset = ":dataset"}
 
 [[redirects]]
   from = "/*"
