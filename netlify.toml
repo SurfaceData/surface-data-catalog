@@ -18,9 +18,9 @@ functions = "api/dist/functions"
 [[redirects]]
   from = "/api"
   to = "/.netlify/functions"
+  query = {apikey = ":apikey", dataset = ":dataset"}
 
 [[redirects]]
   from = "/*"
   to = "/200.html"
   status = 200
-
