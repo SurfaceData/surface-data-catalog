@@ -11,6 +11,8 @@ import 'rsuite/dist/rsuite.min.css'
 import './index.css'
 import './i18n'
 
+console.log(process.env.SUPABASE_URL)
+
 const supabaseClient = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
