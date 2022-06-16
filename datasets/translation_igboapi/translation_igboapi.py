@@ -26,7 +26,7 @@ config = json.loads("""
  "citation": "",
  "description": "",
  "license": "cc-by-nc-sa",
- "url": "https://catalog.surface-coop.com/api/download?dataset=igboapi-{langpair}",
+ "url": "https://catalog.surfacedata.org/api/download?dataset=igboapi-{langpair}",
  "subsets": [
   {
    "source_language": "en",
