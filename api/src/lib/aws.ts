@@ -8,6 +8,10 @@ export class AWSPathSigner {
   constructor(region: string, bucket: string) {
     this.client = new S3Client({
       region,
+      credentials: {
+        accessKeyId: process.env.SDC_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.SDC_AWS_SECRET_ACCESS_KEY,
+      },
     })
     this.bucket = bucket
   }
@@ -23,6 +27,6 @@ export class AWSPathSigner {
 }
 
 export const pathSigner = new AWSPathSigner(
-  process.env.AWS_REGION,
-  process.env.AWS_BUCKET
+  process.env.SDC_AWS_REGION,
+  process.env.SDC_AWS_BUCKET
 )
