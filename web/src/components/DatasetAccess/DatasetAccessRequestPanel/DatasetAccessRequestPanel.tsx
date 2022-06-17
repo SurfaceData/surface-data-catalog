@@ -1,6 +1,6 @@
 import { Panel } from 'rsuite'
 
-import DatasetAccessReviewForm from 'src/components/DatasetAccessReviewForm'
+import DatasetAccessReviewForm from 'src/components/DatasetAccess/DatasetAccessReviewForm'
 
 const DatasetAccessRequestPanel = ({ request }) => {
   return (

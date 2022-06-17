@@ -10,7 +10,7 @@ import { Container, Content, Header, Nav, Sidebar, Sidenav } from 'rsuite'
 import Navigation from 'src/components/Navigation'
 import NavToggle from 'src/components/NavToggle'
 import RedwoodLink from 'src/components/RedwoodLink'
-import SurfaceFooter from 'src/components/SurfaceFooter'
+import SurfaceFooter from 'src/components/ui/SurfaceFooter'
 
 type ProfileLayoutProps = {
   children?: React.ReactNode

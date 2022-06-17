@@ -1,8 +1,8 @@
 import { Form, useForm } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
-import SurfaceSubmit from 'src/components/SurfaceSubmit'
-import { QUERY as FindDatasetAccessQuery } from 'src/components/DatasetAccessCell'
+import SurfaceSubmit from 'src/components/ui/SurfaceSubmit'
+import { QUERY as FindDatasetAccessQuery } from 'src/components/DatasetAccess/DatasetAccessCell'
 
 const REQUEST = gql`
   mutation RequestDatasetAccess($input: RequestDatasetAccessInput!) {

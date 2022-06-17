@@ -4,10 +4,10 @@ import { useAuth } from '@redwoodjs/auth'
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { Panel } from 'rsuite'
 
-import { SurfaceHeader2 } from 'src/components/SurfaceHeader2'
-import SurfacePasswordField from 'src/components/SurfacePasswordField'
-import SurfaceTextField from 'src/components/SurfaceTextField'
-import SurfaceSubmit from 'src/components/SurfaceSubmit'
+import { SurfaceHeader2 } from 'src/components/ui/SurfaceHeader2'
+import SurfacePasswordField from 'src/components/ui/SurfacePasswordField'
+import SurfaceTextField from 'src/components/ui/SurfaceTextField'
+import SurfaceSubmit from 'src/components/ui/SurfaceSubmit'
 
 const SigninPage = () => {
   const { logIn } = useAuth()

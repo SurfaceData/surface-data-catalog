@@ -1,7 +1,7 @@
 import type { FindDatasetAccessQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import DatasetAccessForm from 'src/components/DatasetAccessForm'
+import DatasetAccessForm from 'src/components/DatasetAccess/DatasetAccessForm'
 import DownloadLinkCell from 'src/components/DownloadLinkCell'
 
 export const QUERY = gql`

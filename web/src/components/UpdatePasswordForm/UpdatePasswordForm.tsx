@@ -3,8 +3,8 @@ import { Form, useForm } from '@redwoodjs/forms'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 import { Trans } from 'react-i18next'
 
-import SurfacePasswordField from 'src/components/SurfacePasswordField'
-import SurfaceSubmit from 'src/components/SurfaceSubmit'
+import SurfacePasswordField from 'src/components/ui/SurfacePasswordField'
+import SurfaceSubmit from 'src/components/ui/SurfaceSubmit'
 
 const UpdatePasswordForm = () => {
   const { client } = useAuth()

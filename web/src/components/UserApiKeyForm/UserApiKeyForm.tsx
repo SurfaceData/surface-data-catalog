@@ -2,7 +2,7 @@ import { Form, useForm } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
 import { QUERY as FindUserApiKeyQuery } from 'src/components/UserApiKeyCell'
-import SurfaceSubmit from 'src/components/SurfaceSubmit'
+import SurfaceSubmit from 'src/components/ui/SurfaceSubmit'
 
 const REQUEST = gql`
   mutation CreateUserApiKey {

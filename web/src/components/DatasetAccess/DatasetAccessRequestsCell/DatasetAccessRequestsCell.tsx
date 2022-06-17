@@ -3,7 +3,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import { Stack } from 'rsuite'
 
-import DatasetAccessRequestPanel from 'src/components/DatasetAccessRequestPanel'
+import DatasetAccessRequestPanel from 'src/components/DatasetAccess/DatasetAccessRequestPanel'
 
 export const QUERY = gql`
   query DatasetAccessRequestsQuery {

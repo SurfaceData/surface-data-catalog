@@ -1,7 +1,7 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Panel } from 'rsuite'
 
-import  DatasetAccessCell from 'src/components/DatasetAccessCell'
+import  DatasetAccessCell from 'src/components/DatasetAccess/DatasetAccessCell'
 
 const DatasetPanel = ({ dataset }) => {
   const { currentUser } = useAuth()
