@@ -75,55 +75,64 @@ const DatasetsList = ({ datasets }) => {
   }
 
   return (
-    <div className="rw-segment rw-table-wrapper-responsive">
-      <table className="rw-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Task</th>
-            <th>License</th>
-            <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {datasets.map((dataset) => (
-            <tr key={dataset.id}>
-              <td>{truncate(dataset.id)}</td>
-              <td>{truncate(dataset.name)}</td>
-              <td>{truncate(dataset.task)}</td>
-              <td>{truncate(dataset.license)}</td>
-              <td>
-                <nav className="rw-table-actions">
-                  <Link
-                    to={routes.dataset({ id: dataset.id })}
-                    title={'Show dataset ' + dataset.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </Link>
-                  <Link
-                    to={routes.editDataset({ id: dataset.id })}
-                    title={'Edit dataset ' + dataset.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    title={'Delete dataset ' + dataset.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(dataset.id)}
-                  >
-                    Delete
-                  </button>
-                </nav>
-              </td>
+    <>
+      <Link
+        to={routes.newDataset()}
+        className="rw-button rw-button-green"
+      >
+        <div className="rw-button-icon">+</div> New Dataset
+      </Link>
+
+      <div className="rw-segment rw-table-wrapper-responsive">
+        <table className="rw-table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Task</th>
+              <th>License</th>
+              <th>&nbsp;</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {datasets.map((dataset) => (
+              <tr key={dataset.id}>
+                <td>{truncate(dataset.id)}</td>
+                <td>{truncate(dataset.name)}</td>
+                <td>{truncate(dataset.task)}</td>
+                <td>{truncate(dataset.license)}</td>
+                <td>
+                  <nav className="rw-table-actions">
+                    <Link
+                      to={routes.dataset({ id: dataset.id })}
+                      title={'Show dataset ' + dataset.id + ' detail'}
+                      className="rw-button rw-button-small"
+                    >
+                      Show
+                    </Link>
+                    <Link
+                      to={routes.editDataset({ id: dataset.id })}
+                      title={'Edit dataset ' + dataset.id}
+                      className="rw-button rw-button-small rw-button-blue"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      type="button"
+                      title={'Delete dataset ' + dataset.id}
+                      className="rw-button rw-button-small rw-button-red"
+                      onClick={() => onDeleteClick(dataset.id)}
+                    >
+                      Delete
+                    </button>
+                  </nav>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   )
 }
 
