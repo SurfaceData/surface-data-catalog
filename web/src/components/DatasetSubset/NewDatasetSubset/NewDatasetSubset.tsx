@@ -11,25 +11,37 @@ const CREATE_DATASET_SUBSET_MUTATION = gql`
   }
 `
 
-const NewDatasetSubset = () => {
-  const [createDatasetSubset, { loading, error }] = useMutation(CREATE_DATASET_SUBSET_MUTATION, {
-    onCompleted: () => {
-      toast.success('DatasetSubset created')
-      navigate(routes.datasetSubsets())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+const NewDatasetSubset = ({ datasetId }) => {
+  const [createDatasetSubset, { loading, error }] = useMutation(
+    CREATE_DATASET_SUBSET_MUTATION,
+    {
+      onCompleted: () => {
+        toast.success('DatasetSubset created')
+        navigate(routes.datasetSubsets())
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
 
   const onSave = (input) => {
-    createDatasetSubset({ variables: { input } })
+    createDatasetSubset({
+      variables: {
+        input: {
+          ...input,
+          datasetId,
+        },
+      },
+    })
   }
 
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">New DatasetSubset</h2>
+        <h2 className="rw-heading rw-heading-secondary">
+          New {datasetId} Subset
+        </h2>
       </header>
       <div className="rw-segment-main">
         <DatasetSubsetForm onSave={onSave} loading={loading} error={error} />

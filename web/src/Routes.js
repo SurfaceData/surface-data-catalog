@@ -25,19 +25,14 @@ const Routes = () => {
       <Private unauthenticated="home" roles={['admin', 'steward']}>
         <Set wrap={StewardLayout}>
           <Route path="/steward/review" page={StewardReviewPage} name="stewardReview" />
+          <Route path="/steward/datasets" page={DatasetDatasetsPage} name="datasets" />
+          <Route path="/steward/datasets/new" page={DatasetNewDatasetPage} name="newDataset" />
+          <Route path="/steward/datasets/{id}" page={DatasetDatasetPage} name="dataset" />
+          <Route path="/steward/datasets/{id}/edit" page={DatasetEditDatasetPage} name="editDataset" />
+          <Route path="/steward/datasets/{id}/new-subset" page={DatasetSubsetNewDatasetSubsetPage} name="newDatasetSubset" />
+          <Route path="/steward/datasets/{id}/subsets/{subsetId}" page={DatasetSubsetDatasetSubsetPage} name="datasetSubset" />
+          <Route path="/steward/datasets/{id}/subsets/{subsetId}/edit" page={DatasetSubsetEditDatasetSubsetPage} name="editDatasetSubset" />
           <Route path="/steward/download-logs" page={DownloadLogsPage} name="stewardDownloadLogs" />
-        </Set>
-        <Set wrap={DatasetsLayout}>
-          <Route path="/datasets/new" page={DatasetNewDatasetPage} name="newDataset" />
-          <Route path="/datasets/{id}/edit" page={DatasetEditDatasetPage} name="editDataset" />
-          <Route path="/datasets/{id}" page={DatasetDatasetPage} name="dataset" />
-          <Route path="/datasets" page={DatasetDatasetsPage} name="datasets" />
-        </Set>
-        <Set wrap={DatasetSubsetsLayout}>
-          <Route path="/dataset-subsets/new" page={DatasetSubsetNewDatasetSubsetPage} name="newDatasetSubset" />
-          <Route path="/dataset-subsets/{id}/edit" page={DatasetSubsetEditDatasetSubsetPage} name="editDatasetSubset" />
-          <Route path="/dataset-subsets/{id}" page={DatasetSubsetDatasetSubsetPage} name="datasetSubset" />
-          <Route path="/dataset-subsets" page={DatasetSubsetDatasetSubsetsPage} name="datasetSubsets" />
         </Set>
       </Private>
       <Private unauthenticated="home" roles="admin">

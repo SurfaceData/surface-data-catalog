@@ -15,7 +15,7 @@ import type { StandardScenario } from './datasetSubsets.scenarios'
 
 describe('datasetSubsets', () => {
   scenario('returns all datasetSubsets', async (scenario: StandardScenario) => {
-    const result = await datasetSubsets()
+    const result = await datasetSubsets('d1')
 
     expect(result.length).toEqual(Object.keys(scenario.datasetSubset).length)
   })

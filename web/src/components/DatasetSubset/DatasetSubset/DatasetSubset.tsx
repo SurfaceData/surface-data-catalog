@@ -88,7 +88,7 @@ const DatasetSubset = ({ datasetSubset }) => {
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.editDatasetSubset({ id: datasetSubset.id })}
+          to={routes.editDatasetSubset({ id: datasetSubset.datasetId, subsetId: datasetSubset.id })}
           className="rw-button rw-button-blue"
         >
           Edit

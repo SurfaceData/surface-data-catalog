@@ -4,8 +4,8 @@ type DatasetSubsetPageProps = {
   id: string
 }
 
-const DatasetSubsetPage = ({ id }: DatasetSubsetPageProps) => {
-  return <DatasetSubsetCell id={id} />
+const DatasetSubsetPage = ({ id, subsetId }: DatasetSubsetPageProps) => {
+  return <DatasetSubsetCell id={id} subsetId={subsetId} />
 }
 
 export default DatasetSubsetPage

@@ -4,6 +4,8 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
+import DatasetSubsetsCell from 'src/components/DatasetSubset/DatasetSubsetsCell'
+
 const DELETE_DATASET_MUTATION = gql`
   mutation DeleteDatasetMutation($id: String!) {
     deleteDataset(id: $id) {
@@ -100,7 +102,16 @@ const Dataset = ({ dataset }) => {
         >
           Delete
         </button>
+        <Link
+          to={routes.newDatasetSubset({ id: dataset.id })}
+          className="rw-button rw-button-green"
+        >
+          <div className="rw-button-icon">+</div> New DatasetSubset
+        </Link>
+
       </nav>
+
+      <DatasetSubsetsCell datasetId={dataset.id} />
     </>
   )
 }

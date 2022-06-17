@@ -1,4 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
+import DataAuthorizeIcon from '@rsuite/icons/DataAuthorize'
 import FileDownloadIcon from '@rsuite/icons/FileDownload'
 import PeoplesIcon from '@rsuite/icons/Peoples'
 import { useState } from 'react'
@@ -44,9 +45,14 @@ const StewardLayout = ({ children }: StewardLayoutProps) => {
                   to={routes.stewardDownloadLogs()}
                   icon={<FileDownloadIcon />}
                 >
-                  <Trans i18nkey="layouts.downloadLogs">
-                    Download Logs
-                  </Trans>
+                  <Trans i18nKey="layouts.downloadLogs">Download Logs</Trans>
+                </Nav.Item>
+                <Nav.Item
+                  as={RedwoodLink}
+                  to={routes.datasets()}
+                  icon={<DataAuthorizeIcon />}
+                >
+                  Datasets
                 </Nav.Item>
               </Nav>
             </Sidenav.Body>

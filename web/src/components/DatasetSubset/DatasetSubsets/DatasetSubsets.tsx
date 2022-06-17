@@ -96,14 +96,14 @@ const DatasetSubsetsList = ({ datasetSubsets }) => {
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.datasetSubset({ id: datasetSubset.id })}
+                    to={routes.datasetSubset({ id: datasetSubset.datasetId, subsetId: datasetSubset.id })}
                     title={'Show datasetSubset ' + datasetSubset.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editDatasetSubset({ id: datasetSubset.id })}
+                    to={routes.editDatasetSubset({ id: datasetSubset.datasetId, subsetId: datasetSubset.id })}
                     title={'Edit datasetSubset ' + datasetSubset.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >

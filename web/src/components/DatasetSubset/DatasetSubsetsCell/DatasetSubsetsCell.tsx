@@ -6,8 +6,8 @@ import { Link, routes } from '@redwoodjs/router'
 import DatasetSubsets from 'src/components/DatasetSubset/DatasetSubsets'
 
 export const QUERY = gql`
-  query FindDatasetSubsets {
-    datasetSubsets {
+  query FindDatasetSubsets($datasetId: String!) {
+    datasetSubsets(datasetId: $datasetId) {
       id
       language
       path
@@ -18,19 +18,19 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => {
-  return (
-    <div className="rw-text-center">
-      {'No datasetSubsets yet. '}
-      <Link
-        to={routes.newDatasetSubset()}
-        className="rw-link"
-      >
-        {'Create one?'}
-      </Link>
-    </div>
-  )
-}
+  export const Empty = () => {
+    return (
+      <div className="rw-text-center">
+        {'No datasetSubsets yet. '}
+        <Link
+          to={routes.newDatasetSubset()}
+          className="rw-link"
+        >
+          {'Create one?'}
+        </Link>
+      </div>
+    )
+  }
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>

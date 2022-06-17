@@ -73,25 +73,6 @@ const DatasetSubsetForm = (props) => {
 
         <FieldError name="path" className="rw-field-error" />
 
-        <Label
-          name="datasetId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Dataset id
-        </Label>
-
-        <TextField
-          name="datasetId"
-          defaultValue={props.datasetSubset?.datasetId}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-
-        <FieldError name="datasetId" className="rw-field-error" />
-
         <div className="rw-button-group">
           <Submit
             disabled={props.loading}

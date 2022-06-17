@@ -81,9 +81,7 @@ const DatasetsList = ({ datasets }) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Language</th>
             <th>Task</th>
-            <th>Path</th>
             <th>License</th>
             <th>&nbsp;</th>
           </tr>

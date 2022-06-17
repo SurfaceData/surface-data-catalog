@@ -8,8 +8,8 @@ import { navigate, routes } from '@redwoodjs/router'
 import DatasetSubsetForm from 'src/components/DatasetSubset/DatasetSubsetForm'
 
 export const QUERY = gql`
-  query EditDatasetSubsetById($id: String!) {
-    datasetSubset: datasetSubset(id: $id) {
+  query EditDatasetSubsetById($subsetId: String!) {
+    datasetSubset: datasetSubset(id: $subsetId) {
       id
       language
       path
@@ -30,9 +30,9 @@ const UPDATE_DATASET_SUBSET_MUTATION = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error.message}</div>
-)
+  export const Failure = ({ error }: CellFailureProps) => (
+    <div className="rw-cell-error">{error.message}</div>
+  )
 
 export const Success = ({ datasetSubset }: CellSuccessProps<EditDatasetSubsetById>) => {
   const [updateDatasetSubset, { loading, error }] = useMutation(UPDATE_DATASET_SUBSET_MUTATION, {
@@ -52,7 +52,7 @@ export const Success = ({ datasetSubset }: CellSuccessProps<EditDatasetSubsetByI
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit DatasetSubset {datasetSubset.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">Edit {datasetSubset.id}</h2>
       </header>
       <div className="rw-segment-main">
         <DatasetSubsetForm datasetSubset={datasetSubset} onSave={onSave} error={error} loading={loading} />

@@ -5,8 +5,12 @@ import type {
   DatasetSubsetResolvers,
 } from 'types/graphql'
 
-export const datasetSubsets: QueryResolvers['datasetSubsets'] = () => {
-  return db.datasetSubset.findMany()
+export const datasetSubsets: QueryResolvers['datasetSubsets'] = ({
+  datasetId,
+}) => {
+  return db.datasetSubset.findMany({
+    where: { datasetId },
+  })
 }
 
 export const datasetSubset: QueryResolvers['datasetSubset'] = ({ id }) => {
