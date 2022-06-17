@@ -1,5 +1,6 @@
 import type { FindDatasetAccessQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import { Link, routes } from '@redwoodjs/router'
 
 import DatasetAccessForm from 'src/components/DatasetAccess/DatasetAccessForm'
 import DownloadLinkCell from 'src/components/DownloadLinkCell'
@@ -37,7 +38,7 @@ export const Success = ({
     <div>
       <div>Request Status: {accessLabels[datasetAccess.status]}</div>
       {datasetAccess.status === 3 && (
-        <DownloadLinkCell datasetId={datasetId} />
+        <Link to={routes.dataset({ id: datasetId })}>Details</Link>
       )}
     </div>
   )

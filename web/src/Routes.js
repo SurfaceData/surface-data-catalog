@@ -40,6 +40,7 @@ const Routes = () => {
       </Private>
       <Set wrap={StandardLayout}>
         <Route path="/" page={HomePage} name="home" />
+        <Route path="/dataset/{id}" page={DatasetPage} name="dataset" />
         <Route notfound page={NotFoundPage} />
       </Set>
     </Router>

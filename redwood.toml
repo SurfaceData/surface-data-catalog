@@ -1,7 +1,7 @@
 [web]
 title = "Surface RedwoodTemplate"
 port = 8910
-apiUrl = "/.netlify/functions"
+apiUrl = "/api"
 includeEnvironmentVariables = ["SUPABASE_URL","SUPABASE_KEY"]
 [api]
 port = 8911

@@ -16,8 +16,8 @@ functions = "api/dist/functions"
   port = 8888
 
 [[redirects]]
-  from = "/api/download"
-  to = "/.netlify/functions/download"
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
 
 [[redirects]]
   from = "/*"
