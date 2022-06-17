@@ -26,12 +26,6 @@
                 "id": "redwood-web",
                 "value": "origin"
               }
-            },
-            "DATABASE_URL": {
-              "fromService": {
-                "id": "db",
-                "value": "dbConnectionString"
-              }
             }
           }
         },
@@ -51,17 +45,6 @@
               }
             }
           }
-        },
-        {
-          "id": "db",
-          "name": "Database",
-          "type": "rds",
-          "engine": "postgres",
-          "engineVersion": "12",
-          "instanceSize": "db.t2.micro",
-          "port": 5432,
-          "storage": 20,
-          "private": false
         }
       ]
     }
