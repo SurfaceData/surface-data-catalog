@@ -22,7 +22,11 @@ const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
       <AuthProvider client={supabaseClient} type="supabase">
-        <RedwoodApolloProvider>
+        <RedwoodApolloProvider
+          graphQLClientConfig={{
+            httpLinkConfig: { credentials: 'include' },
+          }}
+        >
           <Routes />
         </RedwoodApolloProvider>
       </AuthProvider>
