@@ -10,7 +10,8 @@
       "services": [
         {
           "id": "redwood-api",
-          "name": "Redwood API",
+          "name": "Surface Data Catalog API",
+          "domain": "catalog.api.surface-coop.com",
           "type": "fargate",
           "cpu": 0.25,
           "memory": 0.5,
@@ -31,7 +32,8 @@
         },
         {
           "id": "redwood-web",
-          "name": "Redwood Web",
+          "name": "Surface Data Catalog Web",
+          "domain": "catalog.api.surface-coop.com",
           "type": "static",
           "singlePageApp": true,
           "installCommand": "yarn set version 3.2.0 && NODE_ENV=development yarn install --immutable",
