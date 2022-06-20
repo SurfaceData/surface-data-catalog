@@ -20,6 +20,6 @@ export const Loading = () => <div></div>
   )
 
 export const Success = ({ userApiKey, datasetId }: CellSuccessProps<FindDownloadLinkQuery>) => {
-  const url = `/api/download?apikey=${userApiKey.key}&dataset=${datasetId}`
+  const url = `${global.RWJS_API_URL}/download?apikey=${userApiKey.key}&dataset=${datasetId}`
   return (<a href={url}>download</a>)
 }
