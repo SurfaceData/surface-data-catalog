@@ -35,7 +35,7 @@ const renderProfileIcon = (props, ref) => {
 
 const UserItem = () => {
   const { isAuthenticated, currentUser, hasRole, logOut } = useAuth()
-  if (isAuthenticated) {
+  if (isAuthenticated && currentUser) {
     return (
       <Dropdown
         placement="bottomEnd"

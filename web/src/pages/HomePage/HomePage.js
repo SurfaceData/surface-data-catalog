@@ -18,7 +18,6 @@ const HomePage = () => {
       ) : (
         <div>
           <Trans i18nKey="homeUnauthenticated">Unauthenticated View</Trans>
-          <DatasetsCell />
         </div>
       )}
     </>
