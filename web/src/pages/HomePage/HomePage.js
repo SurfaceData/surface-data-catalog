@@ -7,7 +7,7 @@ import DatasetsCell from 'src/components/DatasetsCell'
 import UserApiKeyCell from 'src/components/UserApiKeyCell'
 
 const HomePage = () => {
-  const { isAuthenticated, currentUser, hasRole } = useAuth()
+  const { isAuthenticated } = useAuth()
   return (
     <>
       {isAuthenticated ? (

@@ -1,9 +1,9 @@
 [web]
-title = "Surface RedwoodTemplate"
-port = 8910
-apiUrl = "${REDWOOD_API_URL}"
-includeEnvironmentVariables = ["SUPABASE_URL","SUPABASE_KEY"]
+  title = "Surface RedwoodTemplate"
+  port = 8910
+  apiUrl = "${REDWOOD_API_URL}"
+  includeEnvironmentVariables = ["SUPABASE_URL","SUPABASE_KEY"]
 [api]
-port = 8911
+  port = 8911
 [browser]
-open = true
+  open = true
