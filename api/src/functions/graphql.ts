@@ -9,8 +9,10 @@ import { getCurrentUser } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
 
+console.log(process.env.REDWOOD_WEB_URL)
+
 export const handler = createGraphQLHandler({
-  cors: { origin: '*' },
+  cors: { origin: process.env.REDWOOD_WEB_URL, credentials: true },
   getCurrentUser,
   loggerConfig: { logger, options: {} },
   directives,
