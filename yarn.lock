@@ -12497,10 +12497,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dset@npm:^3.1.0, dset@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "dset@npm:3.1.1"
-  checksum: b26e14f364b2b849f4a4f779fe0f14d9e3e6224ed0c4139f5592c4f253ba44768ecd689b1cf04b920f0a6f88c64d959ef332745d1564c2d18e8496a1e7262a43
+"dset@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "dset@npm:3.1.2"
+  checksum: a10d5f214ccd53e7d2e79215473256b74cb98fd3f20ad4f4684ab575b19bac71e5dda524d6febcf42854062e3f575a2dbfca4d53d2ffb9ae238eecdcc97a095b
   languageName: node
   linkType: hard
 
@@ -15042,31 +15042,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob-parent@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "glob-parent@npm:3.1.0"
-  dependencies:
-    is-glob: ^3.1.0
-    path-dirname: ^1.0.0
-  checksum: bfa89ce5ae1dfea4c2ece7b61d2ea230d87fcbec7472915cfdb3f4caf688a91ecb0dc86ae39b1e17505adce7e64cae3b971d64dc66091f3a0131169fd631b00d
-  languageName: node
-  linkType: hard
-
-"glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.2":
+"glob-parent@npm:^5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
   dependencies:
     is-glob: ^4.0.1
   checksum: cab87638e2112bee3f839ef5f6e0765057163d39c66be8ec1602f3823da4692297ad4e972de876ea17c44d652978638d2fd583c6713d0eb6591706825020c9ee
-  languageName: node
-  linkType: hard
-
-"glob-parent@npm:^6.0.1, glob-parent@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "glob-parent@npm:6.0.2"
-  dependencies:
-    is-glob: ^4.0.3
-  checksum: 317034d88654730230b3f43bb7ad4f7c90257a426e872ea0bf157473ac61c99bf5d205fad8f0185f989be8d2fa6d3c7dce1645d99d545b6ea9089c39f838e7f8
   languageName: node
   linkType: hard
 
@@ -16713,7 +16694,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-glob@npm:^3.0.0, is-glob@npm:^3.1.0":
+"is-glob@npm:^3.0.0":
   version: 3.1.0
   resolution: "is-glob@npm:3.1.0"
   dependencies:
@@ -20805,13 +20786,6 @@ __metadata:
     dot-case: ^3.0.4
     tslib: ^2.0.3
   checksum: b6b14637228a558793f603aaeb2fcd981e738b8b9319421b713532fba96d75aa94024b9f6b9ae5aa33d86755144a5b36697d28db62ae45527dbd672fcc2cf0b7
-  languageName: node
-  linkType: hard
-
-"path-dirname@npm:^1.0.0":
-  version: 1.0.2
-  resolution: "path-dirname@npm:1.0.2"
-  checksum: 71e59be2bada7c91f62b976245fd421b7cb01fde3207fe53a82d8880621ad04fd8b434e628c9cf4e796259fc168a107d77cd56837725267c5b2c58cefe2c4e1b
   languageName: node
   linkType: hard
 
@@ -25450,10 +25424,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"trim-newlines@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "trim-newlines@npm:1.0.0"
-  checksum: ae859c83d0dbcbde32245509f7c51a4bc9696d56e080bc19acc95c4188381e34fba05a4b2fefb47b4ee4537150a11d57a0fd3cd1179837c06210795d7f62e795
+"trim-newlines@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "trim-newlines@npm:3.0.1"
+  checksum: 03cfefde6c59ff57138412b8c6be922ecc5aec30694d784f2a65ef8dcbd47faef580b7de0c949345abdc56ec4b4abf64dd1e5aea619b200316e471a3dd5bf1f6
   languageName: node
   linkType: hard
 
@@ -25464,10 +25438,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"trim@npm:0.0.1":
-  version: 0.0.1
-  resolution: "trim@npm:0.0.1"
-  checksum: d974971fc8b8629d13286f20ec6ccc48f480494ca9df358d452beb1fd7eea1b802be41cc7ee157be4abbdf1b3ca79cc6d04c34b14a7026037d437e8de9dacecb
+"trim@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "trim@npm:0.0.3"
+  checksum: e13cbd17adfe116918762c7b0fe6ae5ace5a2d4229e2b3f4115651a31569676f73381ce5e843d1500de74a720fb012e5106e7e327a2eb2052ce575b1cd33fd5f
   languageName: node
   linkType: hard
 
