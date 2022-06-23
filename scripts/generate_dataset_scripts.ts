@@ -1,5 +1,5 @@
 import { renderFile } from 'template-file'
-import { writeFileSync } from 'fs'
+import { existsSync, writeFileSync } from 'fs'
 
 import { db } from 'api/src/lib/db'
 
@@ -10,11 +10,25 @@ export default async ({ args }) => {
     },
   })
   datasets.forEach(async (dataset) => {
+    if (dataset.task != 'translation') {
+      console.log(`Skipping ${dataset.name}, task type not supported yet`)
+      return
+    }
+
+    const datasetPackage = `${dataset.task}_${dataset.id}`
+    const packageDir = `./datasets/${datasetPackage}`
+    if (!existsSync(packageDir)) {
+      console.log(
+        `Skipping ${dataset.name}, the repository needs to be made first`
+      )
+      return
+    }
+
     const config = {
       citation: '',
       description: '',
       license: dataset.license,
-      url: `${args.api_url}/api/download?dataset=${dataset.id}-{langpair}`,
+      url: `${args.api_url}/download?dataset=${dataset.id}-{langpair}`,
       subsets: dataset.subsets.map((subset) => {
         const languages = subset.language.split('_')
         return {
@@ -27,10 +41,9 @@ export default async ({ args }) => {
       config: JSON.stringify(config, null, ' '),
     }
     const result = await renderFile(
-      './datasets/task_dataset/task_dataset.py',
+      `./datasets/template_dataset/${dataset.task}.py`,
       data
     )
-    const datasetPackage = `${dataset.task}_${dataset.id}`
-    writeFileSync(`./datasets/${datasetPackage}/${datasetPackage}.py`, result)
+    writeFileSync(`${packageDir}/${datasetPackage}.py`, result)
   })
 }
