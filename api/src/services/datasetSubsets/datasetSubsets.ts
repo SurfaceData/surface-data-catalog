@@ -1,4 +1,6 @@
+import { pathSigner } from 'src/lib/aws'
 import { db } from 'src/lib/db'
+
 import type {
   QueryResolvers,
   MutationResolvers,
@@ -40,6 +42,29 @@ export const updateDatasetSubset: MutationResolvers['updateDatasetSubset'] = ({
     where: { id },
   })
 }
+
+export const uploadDatasetSubset: MutationResolvers['uploadDatasetSubset'] =
+  async ({ input }) => {
+    const { task } = await db.dataset.findUnique({
+      where: { id: input.datasetId },
+    })
+    const { signedRequest, path } = await pathSigner.getSignedUpload(
+      input.datasetId,
+      task
+    )
+    const id = `${input.datasetId}-${input.language}`
+    await db.datasetSubset.create({
+      data: {
+        id,
+        path,
+        language: input.language,
+        datasetId: input.datasetId,
+      },
+    })
+    return {
+      signedRequest,
+    }
+  }
 
 export const deleteDatasetSubset: MutationResolvers['deleteDatasetSubset'] = ({
   id,

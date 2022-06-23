@@ -3,25 +3,13 @@ import {
   FormError,
   FieldError,
   Label,
+  FileField,
   TextField,
   Submit,
 } from '@redwoodjs/forms'
 
-
-
 const DatasetSubsetForm = (props) => {
   const onSubmit = (data) => {
-
-
-
-
-
-
-
-
-
-
-
     props.onSave(data, props?.datasetSubset?.id)
   }
 
@@ -67,9 +55,22 @@ const DatasetSubsetForm = (props) => {
           defaultValue={props.datasetSubset?.path}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
 
+        <Label
+          name="upload"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Upload
+        </Label>
+
+        <FileField
+          name="upload"
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="path" className="rw-field-error" />
 

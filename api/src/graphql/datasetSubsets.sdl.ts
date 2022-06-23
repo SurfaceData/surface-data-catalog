@@ -24,6 +24,15 @@ export const schema = gql`
     datasetId: String
   }
 
+  input UploadDatasetSubsetInput {
+    datasetId: String!
+    language: String!
+  }
+
+  type UploadDatasetSubsetOutput {
+    signedRequest: String!
+  }
+
   type Mutation {
     createDatasetSubset(input: CreateDatasetSubsetInput!): DatasetSubset!
       @requireAuth
@@ -31,6 +40,9 @@ export const schema = gql`
       id: String!
       input: UpdateDatasetSubsetInput!
     ): DatasetSubset! @requireAuth
+    uploadDatasetSubset(
+      input: UploadDatasetSubsetInput!
+    ): UploadDatasetSubsetOutput! @requireAuth(roles: ["admin", "steward"])
     deleteDatasetSubset(id: String!): DatasetSubset! @requireAuth
   }
 `

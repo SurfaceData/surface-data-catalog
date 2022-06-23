@@ -1,4 +1,8 @@
-import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
+import {
+  S3Client,
+  GetObjectCommand,
+  PutObjectCommand,
+} from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
 export class AWSPathSigner {
@@ -23,6 +27,21 @@ export class AWSPathSigner {
     })
 
     return await getSignedUrl(this.client, command, { expiresIn: 3600 })
+  }
+
+  async getSignedUpload(dataset: string, task: string) {
+    const path = `${task}/${dataset}/v0/train.tsv`
+    const command = new PutObjectCommand({
+      Key: path,
+      Bucket: this.bucket,
+    })
+    const signedRequest = await getSignedUrl(this.client, command, {
+      expiresIn: 600,
+    })
+    return {
+      signedRequest,
+      path,
+    }
   }
 }
 
