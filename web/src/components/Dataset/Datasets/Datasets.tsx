@@ -104,7 +104,7 @@ const DatasetsList = ({ datasets }) => {
                 <td>
                   <nav className="rw-table-actions">
                     <Link
-                      to={routes.dataset({ id: dataset.id })}
+                      to={routes.stewardDataset({ id: dataset.id })}
                       title={'Show dataset ' + dataset.id + ' detail'}
                       className="rw-button rw-button-small"
                     >

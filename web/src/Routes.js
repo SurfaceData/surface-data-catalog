@@ -25,7 +25,7 @@ const Routes = () => {
           <Route path="/steward/review" page={StewardStewardReviewPage} name="stewardReview" />
           <Route path="/steward/datasets" page={StewardDatasetsPage} name="datasets" />
           <Route path="/steward/datasets/new" page={StewardNewDatasetPage} name="newDataset" />
-          <Route path="/steward/datasets/{id}" page={StewardDatasetPage} name="dataset" />
+          <Route path="/steward/datasets/{id}" page={StewardDatasetPage} name="stewardDataset" />
           <Route path="/steward/datasets/{id}/edit" page={StewardEditDatasetPage} name="editDataset" />
           <Route path="/steward/datasets/{id}/new-subset" page={StewardNewDatasetSubsetPage} name="newDatasetSubset" />
           <Route path="/steward/datasets/{id}/subsets/{subsetId}" page={StewardDatasetSubsetPage} name="datasetSubset" />

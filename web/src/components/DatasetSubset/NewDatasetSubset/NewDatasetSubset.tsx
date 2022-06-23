@@ -17,7 +17,7 @@ const NewDatasetSubset = ({ datasetId }) => {
     {
       onCompleted: () => {
         toast.success('DatasetSubset created')
-        navigate(routes.datasetSubsets())
+        navigate(routes.stewardDataset({id: datasetId }))
       },
       onError: (error) => {
         toast.error(error.message)

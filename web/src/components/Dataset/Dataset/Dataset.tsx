@@ -48,10 +48,11 @@ const checkboxInputTag = (checked) => {
 }
 
 const Dataset = ({ dataset }) => {
+  console.log(dataset)
   const [deleteDataset] = useMutation(DELETE_DATASET_MUTATION, {
     onCompleted: () => {
       toast.success('Dataset deleted')
-      navigate(routes.datasets())
+      navigate(routes.stewardDatasets())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -110,7 +111,6 @@ const Dataset = ({ dataset }) => {
         </Link>
 
       </nav>
-
       <DatasetSubsetsCell datasetId={dataset.id} />
     </>
   )

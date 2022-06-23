@@ -18,12 +18,12 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-  export const Empty = () => {
+  export const Empty = ({ datasetId }) => {
     return (
       <div className="rw-text-center">
         {'No datasetSubsets yet. '}
         <Link
-          to={routes.newDatasetSubset()}
+          to={routes.newDatasetSubset({ id: datasetId })}
           className="rw-link"
         >
           {'Create one?'}
