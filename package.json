@@ -42,6 +42,7 @@
     "cross-undici-fetch": "^0.4.5",
     "dset": "^3.1.2",
     "glob-parent": "^5.1.2",
+    "got": "^11.8.5",
     "trim": "^0.0.3",
     "trim-newlines": "^3.0.1",
     "undici": "^5.5.1"
