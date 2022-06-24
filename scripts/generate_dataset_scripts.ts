@@ -1,5 +1,6 @@
-import { renderFile } from 'template-file'
+import { execSync } from 'child_process'
 import { existsSync, writeFileSync } from 'fs'
+import { renderFile } from 'template-file'
 
 import { db } from 'api/src/lib/db'
 
@@ -18,10 +19,18 @@ export default async ({ args }) => {
     const datasetPackage = `${dataset.task}_${dataset.id}`
     const packageDir = `./datasets/${datasetPackage}`
     if (!existsSync(packageDir)) {
-      console.log(
-        `Skipping ${dataset.name}, the repository needs to be made first`
+      console.log(`Creating HuggingFace dataset for ${datasetPackage}`)
+      /*
+      execSync(
+        `huggingface-cli repo create -y ${datasetPackage} --type dataset --organization ${args.organization}`
       )
-      return
+      execSync(
+        `git remote add -f ${datasetPackage} https://huggingface.co/datasets/${args.organization}/${datasetPackage}`
+      )
+      */
+      execSync(
+        `git subtree add --prefix datasets/${datasetPackage} ${datasetPackage} main`
+      )
     }
 
     const config = {
