@@ -18,6 +18,7 @@ export default async ({ args }) => {
 
     const datasetPackage = `${dataset.task}_${dataset.id}`
     const packageDir = `./datasets/${datasetPackage}`
+    let shouldGitAdd = false
     if (!existsSync(packageDir)) {
       console.log(`Creating HuggingFace dataset for ${datasetPackage}`)
       execSync(
@@ -29,6 +30,7 @@ export default async ({ args }) => {
       execSync(
         `git subtree add --prefix datasets/${datasetPackage} ${datasetPackage} main`
       )
+      shouldGitAdd = true
     }
 
     const config = {
@@ -52,5 +54,13 @@ export default async ({ args }) => {
       data
     )
     writeFileSync(`${packageDir}/${datasetPackage}.py`, result)
+
+    if (shouldGitAdd) {
+      execSync(`git add datasets/${datasetPackage}`)
+    }
+    execSync(`git commit -am "Updating ${datasetPackage}"`)
+    execSync(
+      `git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
+    )
   })
 }
