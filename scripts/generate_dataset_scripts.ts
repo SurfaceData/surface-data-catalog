@@ -1,5 +1,6 @@
 import { execSync } from 'child_process'
 import { existsSync, writeFileSync } from 'fs'
+import simpleGit from 'simple-git'
 import { renderFile } from 'template-file'
 
 import { db } from 'api/src/lib/db'
@@ -33,6 +34,7 @@ export default async ({ args }) => {
       shouldGitAdd = true
     }
 
+    console.log(`Updating dataset for ${datasetPackage}`)
     const config = {
       citation: '',
       description: '',
@@ -55,8 +57,12 @@ export default async ({ args }) => {
     )
     writeFileSync(`${packageDir}/${datasetPackage}.py`, result)
 
-    if (shouldGitAdd) {
-      execSync(`git add datasets/${datasetPackage}`)
+    const gitStatus = await simpleGit().status([packageDir])
+    if (gitStatus.modified.length == 0 && gitStatus.not_added.length == 0) {
+      return
+    }
+    if (gitStatus.not_added.length >= 0) {
+      execSync(`git add ${packageDir}`)
     }
     execSync(`git commit -am "Updating ${datasetPackage}"`)
     execSync(
