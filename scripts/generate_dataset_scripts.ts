@@ -20,14 +20,12 @@ export default async ({ args }) => {
     const packageDir = `./datasets/${datasetPackage}`
     if (!existsSync(packageDir)) {
       console.log(`Creating HuggingFace dataset for ${datasetPackage}`)
-      /*
       execSync(
         `huggingface-cli repo create -y ${datasetPackage} --type dataset --organization ${args.organization}`
       )
       execSync(
         `git remote add -f ${datasetPackage} https://huggingface.co/datasets/${args.organization}/${datasetPackage}`
       )
-      */
       execSync(
         `git subtree add --prefix datasets/${datasetPackage} ${datasetPackage} main`
       )
