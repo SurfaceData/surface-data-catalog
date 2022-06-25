@@ -40,7 +40,7 @@ const DatasetAccessForm = ({userId, datasetId}) => {
       onSubmit={onSubmit}
       formMethods={formMethods}
     >
-      <SurfaceSubmit rounded outline>
+      <SurfaceSubmit $rounded $outline>
         Request Access
       </SurfaceSubmit>
     </Form>

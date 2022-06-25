@@ -48,7 +48,7 @@ const SignupPage = () => {
           <Trans i18nKey="translation.password">Password</Trans>
         </SurfacePasswordField>
 
-        <SurfaceSubmit rounded>
+        <SurfaceSubmit $rounded>
           <Trans i18nKey="auth.signUp">Sign Up</Trans>
         </SurfaceSubmit>
       </Form>

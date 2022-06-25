@@ -31,7 +31,7 @@ const UserApiKeyForm = () => {
       onSubmit={onSubmit}
       formMethods={formMethods}
     >
-      <SurfaceSubmit rounded="true" outline="true">
+      <SurfaceSubmit $rounded $outline>
         Create API Key
       </SurfaceSubmit>
     </Form>

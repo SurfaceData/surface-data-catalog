@@ -34,7 +34,7 @@ const UpdatePasswordForm = () => {
           <Trans i18nKey="translation.newPassword">New Password</Trans>
         </SurfacePasswordField>
 
-        <SurfaceSubmit rounded outline>
+        <SurfaceSubmit $rounded $outline>
           <Trans i18nKey="auth.updatePassword">Update Password</Trans>
         </SurfaceSubmit>
       </Form>

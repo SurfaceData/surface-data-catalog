@@ -49,7 +49,7 @@ const SigninPage = () => {
           <Trans i18nKey="translation.password">Password</Trans>
         </SurfacePasswordField>
 
-        <SurfaceSubmit rounded>
+        <SurfaceSubmit $rounded>
           <Trans i18nKey="auth.signIn">Sign In</Trans>
         </SurfaceSubmit>
       </Form>
