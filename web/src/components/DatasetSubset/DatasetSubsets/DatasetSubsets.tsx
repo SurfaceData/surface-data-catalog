@@ -1,10 +1,11 @@
-import humanize from 'humanize-string'
-
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
+import { useTranslation, Trans } from 'react-i18next'
+import { Table } from 'rsuite'
 
 import { QUERY } from 'src/components/DatasetSubset/DatasetSubsetsCell'
+import SurfaceButton from 'src/components/ui/SurfaceButton'
 
 const DELETE_DATASET_SUBSET_MUTATION = gql`
   mutation DeleteDatasetSubsetMutation($id: String!) {
@@ -14,43 +15,36 @@ const DELETE_DATASET_SUBSET_MUTATION = gql`
   }
 `
 
-const MAX_STRING_LENGTH = 150
-
-const formatEnum = (values: string | string[] | null | undefined) => {
-  if (values) {
-    if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
-    } else {
-      return humanize(values as string)
-    }
-  }
-}
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
-
-const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
-
-const timeTag = (datetime) => {
+const ActionCell = ({ rowData, onDeleteClick, ...props }) => {
+  const { t } = useTranslation('translation')
   return (
-    datetime && (
-      <time dateTime={datetime} title={datetime}>
-        {new Date(datetime).toUTCString()}
-      </time>
-    )
+    <Table.Cell {...props} style={{ padding: '6px' }}>
+      <div className="p-1 flex gap-2">
+        <Link
+          to={routes.datasetSubset({ id: rowData.datasetId, subsetId: rowData.id })}
+          title={'Show datasetSubset ' + rowData.id + ' detail'}
+          className="rw-button rw-button-small"
+        >
+          <Trans i18nKey="translation.show">Show</Trans>
+        </Link>
+        <Link
+          to={routes.editDatasetSubset({ id: rowData.datasetId, subsetId: rowData.id })}
+          title={'Edit datasetSubset ' + rowData.id}
+          className="rw-button rw-button-small rw-button-blue"
+        >
+          <Trans i18nKey="translation.edit">Edit</Trans>
+        </Link>
+        <button
+          type="button"
+          title={'Delete datasetSubset ' + rowData.id}
+          className="rw-button rw-button-small rw-button-red"
+          onClick={() => onDeleteClick(rowData.id)}
+        >
+          <Trans i18nKey="translation.delete">Delete</Trans>
+        </button>
+      </div>
+    </Table.Cell>
   )
-}
-
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
 }
 
 const DatasetSubsetsList = ({ datasetSubsets }) => {
@@ -61,9 +55,6 @@ const DatasetSubsetsList = ({ datasetSubsets }) => {
     onError: (error) => {
       toast.error(error.message)
     },
-    // This refetches the query on the list page. Read more about other ways to
-    // update the cache over here:
-    // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates
     refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
   })
@@ -76,53 +67,38 @@ const DatasetSubsetsList = ({ datasetSubsets }) => {
 
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
-      <table className="rw-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Language</th>
-            <th>Path</th>
-            <th>Dataset id</th>
-            <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {datasetSubsets.map((datasetSubset) => (
-            <tr key={datasetSubset.id}>
-              <td>{truncate(datasetSubset.id)}</td>
-              <td>{truncate(datasetSubset.language)}</td>
-              <td>{truncate(datasetSubset.path)}</td>
-              <td>{truncate(datasetSubset.datasetId)}</td>
-              <td>
-                <nav className="rw-table-actions">
-                  <Link
-                    to={routes.datasetSubset({ id: datasetSubset.datasetId, subsetId: datasetSubset.id })}
-                    title={'Show datasetSubset ' + datasetSubset.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </Link>
-                  <Link
-                    to={routes.editDatasetSubset({ id: datasetSubset.datasetId, subsetId: datasetSubset.id })}
-                    title={'Edit datasetSubset ' + datasetSubset.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    title={'Delete datasetSubset ' + datasetSubset.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(datasetSubset.id)}
-                  >
-                    Delete
-                  </button>
-                </nav>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table data={datasetSubsets} autoHeight>
+        <Table.Column width={150}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.id">Id</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="id" />
+        </Table.Column>
+        <Table.Column width={100}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.language">Language</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="language" />
+        </Table.Column>
+        <Table.Column width={350}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.path">Path</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="path" />
+        </Table.Column>
+        <Table.Column width={100}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.datasetId">Dataset ID</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="datasetId" />
+        </Table.Column>
+        <Table.Column width={200}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.actions">Actions</Trans>
+          </Table.HeaderCell>
+          <ActionCell onDeleteClick={onDeleteClick} />
+        </Table.Column>
+      </Table>
     </div>
   )
 }

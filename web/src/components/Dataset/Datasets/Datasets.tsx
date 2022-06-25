@@ -1,10 +1,12 @@
-import humanize from 'humanize-string'
-
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
+import humanize from 'humanize-string'
+import { useTranslation, Trans } from 'react-i18next'
+import { Table } from 'rsuite'
 
 import { QUERY } from 'src/components/Dataset/DatasetsCell'
+import SurfaceButton from 'src/components/ui/SurfaceButton'
 
 const DELETE_DATASET_MUTATION = gql`
   mutation DeleteDatasetMutation($id: String!) {
@@ -16,17 +18,6 @@ const DELETE_DATASET_MUTATION = gql`
 
 const MAX_STRING_LENGTH = 150
 
-const formatEnum = (values: string | string[] | null | undefined) => {
-  if (values) {
-    if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
-    } else {
-      return humanize(values as string)
-    }
-  }
-}
-
 const truncate = (text) => {
   let output = text
   if (text && text.length > MAX_STRING_LENGTH) {
@@ -35,22 +26,36 @@ const truncate = (text) => {
   return output
 }
 
-const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
-
-const timeTag = (datetime) => {
+const ActionCell = ({ rowData, onDeleteClick, ...props }) => {
+  const { t } = useTranslation('translation')
   return (
-    datetime && (
-      <time dateTime={datetime} title={datetime}>
-        {new Date(datetime).toUTCString()}
-      </time>
-    )
+    <Table.Cell {...props} style={{ padding: '6px' }}>
+      <div className="p-1 flex gap-2">
+        <Link
+          to={routes.stewardDataset({ id: rowData.id })}
+          title={'Show dataset ' + rowData.id + ' detail'}
+          className="rw-button rw-button-small"
+        >
+          <Trans i18nKey="translation.show">Show</Trans>
+        </Link>
+        <Link
+          to={routes.editDataset({ id: rowData.id })}
+          title={'Edit dataset ' + rowData.id}
+          className="rw-button rw-button-small rw-button-blue"
+        >
+          <Trans i18nKey="translation.edit">Edit</Trans>
+        </Link>
+        <button
+          type="button"
+          title={'Delete dataset ' + rowData.id}
+          className="rw-button rw-button-small rw-button-red"
+          onClick={() => onDeleteClick(rowData.id)}
+        >
+          <Trans i18nKey="translation.delete">Delete</Trans>
+        </button>
+      </div>
+    </Table.Cell>
   )
-}
-
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
 }
 
 const DatasetsList = ({ datasets }) => {
@@ -61,9 +66,6 @@ const DatasetsList = ({ datasets }) => {
     onError: (error) => {
       toast.error(error.message)
     },
-    // This refetches the query on the list page. Read more about other ways to
-    // update the cache over here:
-    // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates
     refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
   })
@@ -75,64 +77,53 @@ const DatasetsList = ({ datasets }) => {
   }
 
   return (
-    <>
-      <Link
-        to={routes.newDataset()}
-        className="rw-button rw-button-green"
-      >
-        <div className="rw-button-icon">+</div> New Dataset
-      </Link>
+    <div className="flex flex-col gap-4">
+      <SurfaceButton $rounded className="w-32">
+        <Link
+          to={routes.newDataset()}
+          className="flex"
+        >
+          <div className="rw-button-icon">+</div> New Dataset
+        </Link>
+      </SurfaceButton>
 
-      <div className="rw-segment rw-table-wrapper-responsive">
-        <table className="rw-table">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Task</th>
-              <th>License</th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            {datasets.map((dataset) => (
-              <tr key={dataset.id}>
-                <td>{truncate(dataset.id)}</td>
-                <td>{truncate(dataset.name)}</td>
-                <td>{truncate(dataset.task)}</td>
-                <td>{truncate(dataset.license)}</td>
-                <td>
-                  <nav className="rw-table-actions">
-                    <Link
-                      to={routes.stewardDataset({ id: dataset.id })}
-                      title={'Show dataset ' + dataset.id + ' detail'}
-                      className="rw-button rw-button-small"
-                    >
-                      Show
-                    </Link>
-                    <Link
-                      to={routes.editDataset({ id: dataset.id })}
-                      title={'Edit dataset ' + dataset.id}
-                      className="rw-button rw-button-small rw-button-blue"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      type="button"
-                      title={'Delete dataset ' + dataset.id}
-                      className="rw-button rw-button-small rw-button-red"
-                      onClick={() => onDeleteClick(dataset.id)}
-                    >
-                      Delete
-                    </button>
-                  </nav>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+      <Table data={datasets} autoHeight>
+        <Table.Column width={150}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.id">Id</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="id" />
+        </Table.Column>
+
+        <Table.Column width={200}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.name">Name</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="name" />
+        </Table.Column>
+
+        <Table.Column width={150}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.task">Task</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="task" />
+        </Table.Column>
+
+        <Table.Column width={150}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.license">License</Trans>
+          </Table.HeaderCell>
+          <Table.Cell dataKey="license" />
+        </Table.Column>
+
+        <Table.Column width={200}>
+          <Table.HeaderCell>
+            <Trans i18nKey="translation.actions">Actions</Trans>
+          </Table.HeaderCell>
+          <ActionCell onDeleteClick={onDeleteClick} />
+        </Table.Column>
+      </Table>
+    </div>
   )
 }
 
