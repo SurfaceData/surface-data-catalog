@@ -7,3 +7,6 @@
   port = 8911
 [browser]
   open = true
+[datasets]
+  organization = "SurfaceData"
+  apiUrl = "https://catalog.api.surfacedata.org"

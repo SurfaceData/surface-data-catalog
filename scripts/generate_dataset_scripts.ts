@@ -1,11 +1,17 @@
 import { execSync } from 'child_process'
-import { existsSync, writeFileSync } from 'fs'
+import { existsSync, readFileSync, writeFileSync } from 'fs'
 import simpleGit from 'simple-git'
 import { renderFile } from 'template-file'
+import toml from 'toml'
 
 import { db } from 'api/src/lib/db'
 
 export default async ({ args }) => {
+  const tomlFile = readFileSync('redwood.toml', 'utf8')
+  const options = toml.parse(tomlFile)
+  const organization = options.datasets.organization
+  const apiUrl = options.datasets.apiUrl
+
   const datasets = await db.dataset.findMany({
     include: {
       subsets: true,
@@ -23,10 +29,10 @@ export default async ({ args }) => {
     if (!existsSync(packageDir)) {
       console.log(`Creating HuggingFace dataset for ${datasetPackage}`)
       execSync(
-        `huggingface-cli repo create -y ${datasetPackage} --type dataset --organization ${args.organization}`
+        `huggingface-cli repo create -y ${datasetPackage} --type dataset --organization ${organization}`
       )
       execSync(
-        `git remote add -f ${datasetPackage} https://huggingface.co/datasets/${args.organization}/${datasetPackage}`
+        `git remote add -f ${datasetPackage} https://huggingface.co/datasets/${organization}/${datasetPackage}`
       )
       execSync(
         `git subtree add --prefix datasets/${datasetPackage} ${datasetPackage} main`
@@ -39,7 +45,7 @@ export default async ({ args }) => {
       citation: '',
       description: '',
       license: dataset.license,
-      url: `${args.api_url}/download?dataset=${dataset.id}-{langpair}`,
+      url: `${apiUrl}/download?dataset=${dataset.id}-{langpair}`,
       subsets: dataset.subsets.map((subset) => {
         const languages = subset.language.split('_')
         return {
