@@ -10,3 +10,4 @@
 [datasets]
   organization = "SurfaceData"
   apiUrl = "https://catalog.api.surfacedata.org"
+  homepage = "https://www.surfacedata.org"

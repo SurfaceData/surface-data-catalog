@@ -25,6 +25,7 @@ config = json.loads("""
 {{ config }}
 """)
 
+_HOMEPAGE = config['homepage']
 _CITATION = config['citation']
 _DESCRIPTION = config['description']
 _LICENSE = config['license']
@@ -72,20 +73,20 @@ class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
                 description=_DESCRIPTION,
                 features=datasets.Features(
                     {
-                        "id":
-                        datasets.Value("string"),
-                        "translation":
-                        datasets.Translation(languages=(source_language,
-                            target_language)),
-                        }, ),
-                    supervised_keys=(source_language, target_language),
-                    homepage="https://catalog.surface-coop.com",
-                    citation=_CITATION,
-                    )
+                        "id": datasets.Value("string"),
+                        "translation": datasets.Translation(
+                            languages=[source_language, target_language]
+                            ),
+                        }
+                    ),
+                supervised_keys=(source_language, target_language),
+                homepage=_HOMEPAGE,
+                citation=_CITATION,
+                license=_LICENSE
+                )
 
     def _split_generators(self, dl_manager):
         download_url = f"{self.config.data_url}&apikey={self.config.apikey}"
-        print(download_url)
         data_file = dl_manager.download_and_extract(
                 {"data_file": download_url})
         return [

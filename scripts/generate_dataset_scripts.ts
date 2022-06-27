@@ -11,6 +11,7 @@ export default async ({ args }) => {
   const options = toml.parse(tomlFile)
   const organization = options.datasets.organization
   const apiUrl = options.datasets.apiUrl
+  const homepage = options.datasets.homepage
 
   const datasets = await db.dataset.findMany({
     include: {
@@ -18,7 +19,10 @@ export default async ({ args }) => {
     },
   })
   datasets.forEach(async (dataset) => {
-    if (dataset.task != 'translation') {
+    if (
+      dataset.task != 'translation' &&
+      dataset.task != 'automatic_speech_recognition'
+    ) {
       console.log(`Skipping ${dataset.name}, task type not supported yet`)
       return
     }
@@ -44,7 +48,9 @@ export default async ({ args }) => {
     const config = {
       citation: '',
       description: '',
+      homepage: homepage,
       license: dataset.license,
+      vresion: 'cv-corpus-8.0-2022-01-19',
       url: `${apiUrl}/download?dataset=${dataset.id}-{langpair}`,
       subsets: dataset.subsets.map((subset) => {
         const languages = subset.language.split('_')
