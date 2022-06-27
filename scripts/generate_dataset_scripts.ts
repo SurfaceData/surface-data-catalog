@@ -48,7 +48,7 @@ export default async ({ args }) => {
       description: '',
       homepage: homepage,
       license: dataset.license,
-      vresion: 'cv-corpus-8.0-2022-01-19',
+      version: 'cv-corpus-8.0-2022-01-19',
       url: `${apiUrl}/download?dataset=${dataset.id}-{langpair}`,
       subsets: dataset.subsets.map((subset) => {
         const languages = subset.language.split('_')
