@@ -88,7 +88,7 @@ class SurfaceAutomaticSpeechRecognitionConfig(datasets.GeneratorBasedBuilder):
                     "down_votes": datasets.Value("int64"),
                     "age": datasets.Value("string"),
                     "gender": datasets.Value("string"),
-                    "accent": datasets.Value("string"),
+                    "accents": datasets.Value("string"),
                     "locale": datasets.Value("string"),
                     "segment": datasets.Value("string"),
                     }
