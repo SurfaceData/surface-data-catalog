@@ -27,7 +27,7 @@ config = json.loads("""
  "description": "",
  "homepage": "https://www.surfacedata.org",
  "license": "cc-by-nc-sa",
- "vresion": "cv-corpus-8.0-2022-01-19",
+ "version": "cv-corpus-8.0-2022-01-19",
  "url": "https://catalog.api.surfacedata.org/download?dataset=MorisienMT-{langpair}",
  "subsets": [
   {

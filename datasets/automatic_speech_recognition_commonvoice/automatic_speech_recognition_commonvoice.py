@@ -17,6 +17,7 @@
 
 import csv
 import json
+import os
 
 import datasets
 from datasets.tasks import AutomaticSpeechRecognition
@@ -29,7 +30,7 @@ config = json.loads("""
  "description": "",
  "homepage": "https://www.surfacedata.org",
  "license": "cc-0",
- "vresion": "cv-corpus-8.0-2022-01-19",
+ "version": "cv-corpus-8.0-2022-01-19",
  "url": "https://catalog.api.surfacedata.org/download?dataset=commonvoice-{langpair}",
  "subsets": [
   {
@@ -59,18 +60,21 @@ class SurfaceAutomaticSpeechRecognitionConfig(datasets.BuilderConfig):
           url: `string`, url for information about the data set
           **kwargs: keyword arguments forwarded to super.
         """
-        super(CommonVoiceConfig, self).__init__(
+        super(SurfaceAutomaticSpeechRecognitionConfig, self).__init__(
                 name=name, **kwargs)
+        self.data_url = _BASE_URL_FORMAT_STR.format(
+                langpair=name)
+        self.apikey = 'placeholder'
 
 
 class SurfaceAutomaticSpeechRecognitionConfig(datasets.GeneratorBasedBuilder):
 
     DEFAULT_WRITER_BATCH_SIZE = 1000
     BUILDER_CONFIGS = [
-            CommonVoiceConfig(
-                name=lang_id,
+            SurfaceAutomaticSpeechRecognitionConfig(
+                name=subset['source_language'] ,
                 )
-            for lang_id in _LANGUAGES.keys()
+            for subset in config['subsets']
             ]
 
     def _info(self):
@@ -98,14 +102,15 @@ class SurfaceAutomaticSpeechRecognitionConfig(datasets.GeneratorBasedBuilder):
                 license=_LICENSE,
                 citation=_CITATION,
                 task_templates=[
-                    AutomaticSpeechRecognition(audio_file_path_column="path", transcription_column="sentence")
+                    AutomaticSpeechRecognition(audio_column="audio", transcription_column="sentence")
                     ],
                 )
 
     def _split_generators(self, dl_manager):
         """Returns SplitGenerators."""
         # Download the TAR archive that contains the audio files:
-        archive_path = dl_manager.download(_BASE_URL_FORMAT_STR.format(langpair=self.config.name))
+        download_url = f"{self.config.data_url}&apikey={self.config.apikey}"
+        archive_path = dl_manager.download(download_url)
 
         # First we locate the data using the path within the archive:
         path_to_data = "/".join([_VERSION, self.config.name])
@@ -223,23 +228,23 @@ class SurfaceAutomaticSpeechRecognitionConfig(datasets.GeneratorBasedBuilder):
                     # set full path for mp3 audio file
                     audio_path = "/".join([path_to_clips, field_values[path_idx]])
                     all_field_values[audio_path] = field_values
-        elif path.startswith(path_to_clips):
-            assert metadata_found, "Found audio clips before the metadata TSV file."
-            if not all_field_values:
-                break
-            if path in all_field_values:
-                # retrieve the metadata corresponding to this audio file
-                field_values = all_field_values[path]
+            elif path.startswith(path_to_clips):
+                assert metadata_found, "Found audio clips before the metadata TSV file."
+                if not all_field_values:
+                    break
+                if path in all_field_values:
+                    # retrieve the metadata corresponding to this audio file
+                    field_values = all_field_values[path]
 
-                # if data is incomplete, fill with empty values
-                if len(field_values) < len(data_fields):
-                    field_values += (len(data_fields) - len(field_values)) * ["''"]
+                    # if data is incomplete, fill with empty values
+                    if len(field_values) < len(data_fields):
+                        field_values += (len(data_fields) - len(field_values)) * ["''"]
 
-                result = {key: value for key, value in zip(data_fields, field_values)}
+                    result = {key: value for key, value in zip(data_fields, field_values)}
 
-                # set audio feature
-                result["audio"] = {"path": path, "bytes": f.read()}
-                # set path to None if the audio file doesn't exist locally (i.e. in streaming mode)
-                result["path"] = os.path.join(local_extracted_archive, path) if local_extracted_archive else None
+                    # set audio feature
+                    result["audio"] = {"path": path, "bytes": f.read()}
+                    # set path to None if the audio file doesn't exist locally (i.e. in streaming mode)
+                    result["path"] = os.path.join(local_extracted_archive, path) if local_extracted_archive else None
 
-                yield path, result
+                    yield path, result
