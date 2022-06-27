@@ -20,7 +20,7 @@ export default async ({ args }) => {
   })
   datasets.forEach(async (dataset) => {
     if (
-      dataset.task != 'translation' &&
+      //dataset.task != 'translation' &&
       dataset.task != 'automatic_speech_recognition'
     ) {
       console.log(`Skipping ${dataset.name}, task type not supported yet`)
@@ -29,7 +29,6 @@ export default async ({ args }) => {
 
     const datasetPackage = `${dataset.task}_${dataset.id}`
     const packageDir = `./datasets/${datasetPackage}`
-    let shouldGitAdd = false
     if (!existsSync(packageDir)) {
       console.log(`Creating HuggingFace dataset for ${datasetPackage}`)
       execSync(
@@ -41,7 +40,6 @@ export default async ({ args }) => {
       execSync(
         `git subtree add --prefix datasets/${datasetPackage} ${datasetPackage} main`
       )
-      shouldGitAdd = true
     }
 
     console.log(`Updating dataset for ${datasetPackage}`)
@@ -70,6 +68,7 @@ export default async ({ args }) => {
     writeFileSync(`${packageDir}/${datasetPackage}.py`, result)
 
     const gitStatus = await simpleGit().status([packageDir])
+    console.log(gitStatus)
     if (gitStatus.modified.length == 0 && gitStatus.not_added.length == 0) {
       return
     }
