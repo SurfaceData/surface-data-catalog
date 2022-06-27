@@ -223,24 +223,23 @@ class SurfaceAutomaticSpeechRecognitionConfig(datasets.GeneratorBasedBuilder):
                     # set full path for mp3 audio file
                     audio_path = "/".join([path_to_clips, field_values[path_idx]])
                     all_field_values[audio_path] = field_values
-            # Else, read the audio file and yield an example
         elif path.startswith(path_to_clips):
             assert metadata_found, "Found audio clips before the metadata TSV file."
-                if not all_field_values:
-                    break
-                if path in all_field_values:
-                    # retrieve the metadata corresponding to this audio file
-                    field_values = all_field_values[path]
+            if not all_field_values:
+                break
+            if path in all_field_values:
+                # retrieve the metadata corresponding to this audio file
+                field_values = all_field_values[path]
 
-                    # if data is incomplete, fill with empty values
-                    if len(field_values) < len(data_fields):
-                        field_values += (len(data_fields) - len(field_values)) * ["''"]
+                # if data is incomplete, fill with empty values
+                if len(field_values) < len(data_fields):
+                    field_values += (len(data_fields) - len(field_values)) * ["''"]
 
-                    result = {key: value for key, value in zip(data_fields, field_values)}
+                result = {key: value for key, value in zip(data_fields, field_values)}
 
-                    # set audio feature
-                    result["audio"] = {"path": path, "bytes": f.read()}
-                    # set path to None if the audio file doesn't exist locally (i.e. in streaming mode)
-                    result["path"] = os.path.join(local_extracted_archive, path) if local_extracted_archive else None
+                # set audio feature
+                result["audio"] = {"path": path, "bytes": f.read()}
+                # set path to None if the audio file doesn't exist locally (i.e. in streaming mode)
+                result["path"] = os.path.join(local_extracted_archive, path) if local_extracted_archive else None
 
-                    yield path, result
+                yield path, result

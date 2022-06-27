@@ -20,7 +20,7 @@ export default async ({ args }) => {
   })
   datasets.forEach(async (dataset) => {
     if (
-      //dataset.task != 'translation' &&
+      dataset.task != 'translation' &&
       dataset.task != 'automatic_speech_recognition'
     ) {
       console.log(`Skipping ${dataset.name}, task type not supported yet`)
@@ -68,7 +68,6 @@ export default async ({ args }) => {
     writeFileSync(`${packageDir}/${datasetPackage}.py`, result)
 
     const gitStatus = await simpleGit().status([packageDir])
-    console.log(gitStatus)
     if (gitStatus.modified.length == 0 && gitStatus.not_added.length == 0) {
       return
     }
