@@ -23,22 +23,6 @@ const DatasetForm = (props) => {
         />
 
         <Label
-          name="id"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Id
-        </Label>
-
-        <TextField
-          name="id"
-          defaultValue={props.dataset?.name}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <Label
           name="name"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
