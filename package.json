@@ -32,6 +32,7 @@
     "command-line-args": "^5.2.1",
     "generate-api-key": "^1.0.0",
     "i18next-parser": "^6.4.0",
+    "react-code-blocks": "^0.0.9-0",
     "react-icons": "^4.3.1",
     "react-responsive": "^9.0.0-beta.10",
     "rsuite": "^5.11.0",
