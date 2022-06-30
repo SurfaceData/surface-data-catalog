@@ -119,6 +119,9 @@ class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
         with open(data_file, encoding="utf-8") as f:
             data_reader = csv.reader(line_gen(f), delimiter='\t')
             for row in data_reader:
+                if len(row) != 2:
+                    logger.info("Skipping row with content '%s'", row)
+                    continue
                 content_src, content_trg = row
                 yield key, {
                         "id": key,
@@ -128,5 +131,3 @@ class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
                             },
                         }
                 key += 1
-
-
