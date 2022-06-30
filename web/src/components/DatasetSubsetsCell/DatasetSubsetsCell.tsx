@@ -44,7 +44,6 @@ const ExpandCell = ({ rowData, dataKey, expandedRowKeys, onChange, ...props }) =
 )
 
 const renderRowExpanded = (rowData) => {
-  console.log(rowData)
   return (
     <div>
       <div>Huggingface Usage:</div>
