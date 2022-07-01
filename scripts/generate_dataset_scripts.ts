@@ -53,8 +53,8 @@ export default async ({ args }) => {
       subsets: dataset.subsets.map((subset) => {
         const languages = subset.language.split('_')
         return {
-          source_language: languages[0],
-          target_language: languages[1],
+          name: subset.language,
+          languages: languages,
         }
       }),
     }
