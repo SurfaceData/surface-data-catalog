@@ -14239,7 +14239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fault@npm:^1.0.0, fault@npm:^1.0.2":
+"fault@npm:^1.0.0":
   version: 1.0.4
   resolution: "fault@npm:1.0.4"
   dependencies:
@@ -15664,18 +15664,6 @@ __metadata:
     xtend: ^4.0.0
     zwitch: ^1.0.0
   checksum: 49d6c2389fd3170741cdb0483666bccd7e9e436fe386bcbd3931b019e4c006b5bb48022e07967e1021336e744e901082d6479cfa4bc2082efa3b1e5bdab2a36f
-  languageName: node
-  linkType: hard
-
-"hastscript@npm:^5.0.0":
-  version: 5.1.2
-  resolution: "hastscript@npm:5.1.2"
-  dependencies:
-    comma-separated-tokens: ^1.0.0
-    hast-util-parse-selector: ^2.0.0
-    property-information: ^5.0.0
-    space-separated-tokens: ^1.0.0
-  checksum: f0c2c11d4a8bdfee925348e6057d7f02d2e8baf97b067dfc87b374b5f8a839ba1845b7aa06c35de9179121f8594fc7941b4220a66fce530ad034df762a4909f3
   languageName: node
   linkType: hard
 
@@ -18869,16 +18857,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lowlight@npm:1.12.1":
-  version: 1.12.1
-  resolution: "lowlight@npm:1.12.1"
-  dependencies:
-    fault: ^1.0.2
-    highlight.js: ~9.15.0
-  checksum: 6ecb5808ff32d0100b7a8f4d7aba7f3d897516ba1697c420d978d38d511370acebb935c853ab1a36e0825e6e870d7beabf3df2f03c4a07567937da16a0d045a7
-  languageName: node
-  linkType: hard
-
 "lowlight@npm:^1.17.0":
   version: 1.20.0
   resolution: "lowlight@npm:1.20.0"
@@ -20707,20 +20685,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-entities@npm:^1.1.2":
-  version: 1.2.2
-  resolution: "parse-entities@npm:1.2.2"
-  dependencies:
-    character-entities: ^1.0.0
-    character-entities-legacy: ^1.0.0
-    character-reference-invalid: ^1.0.0
-    is-alphanumerical: ^1.0.0
-    is-decimal: ^1.0.0
-    is-hexadecimal: ^1.0.0
-  checksum: 6782111f2faab39b4fde20dded73aefd51aee7fd4e3dd6a70628da27a1633b60db46cbb71cc2f8a4d8b09d55d9c18b0ae98b0e57f5ffa6ba260e070db9018e21
-  languageName: node
-  linkType: hard
-
 "parse-entities@npm:^2.0.0":
   version: 2.0.0
   resolution: "parse-entities@npm:2.0.0"
@@ -22455,22 +22419,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-syntax-highlighter@npm:^12.2.1":
-  version: 12.2.1
-  resolution: "react-syntax-highlighter@npm:12.2.1"
-  dependencies:
-    "@babel/runtime": ^7.3.1
-    highlight.js: ~9.15.1
-    lowlight: 1.12.1
-    prismjs: ^1.8.4
-    refractor: ^2.4.1
-  peerDependencies:
-    react: ">= 0.14.0"
-  checksum: 2167aa80ce5e0fdb2d70d685aef48d0cefcb31dcf5628e5ba0a758ad7992a975c784304b8f116729da4409faef2610bb181f83dae104f02e3cb850d81b881b7a
-  languageName: node
-  linkType: hard
-
-"react-syntax-highlighter@npm:^15.4.5":
+"react-syntax-highlighter@npm:^15.5.0":
   version: 15.5.0
   resolution: "react-syntax-highlighter@npm:15.5.0"
   dependencies:
@@ -22644,17 +22593,6 @@ __metadata:
     indent-string: ^4.0.0
     strip-indent: ^3.0.0
   checksum: d64a6b5c0b50eb3ddce3ab770f866658a2b9998c678f797919ceb1b586bab9259b311407280bd80b804e2a7c7539b19238ae6a2a20c843f1a7fcff21d48c2eae
-  languageName: node
-  linkType: hard
-
-"refractor@npm:^2.4.1":
-  version: 2.10.1
-  resolution: "refractor@npm:2.10.1"
-  dependencies:
-    hastscript: ^5.0.0
-    parse-entities: ^1.1.2
-    prismjs: ~1.17.0
-  checksum: 6fcef553147b7d2346049b2c31bdccdaedb7aac6ecd69f65c87d8ec345ae0098523648f0643a5e37cea3a3b2fe37c93e0ae0ffef15e35de64620a8bd0a3a660d
   languageName: node
   linkType: hard
 

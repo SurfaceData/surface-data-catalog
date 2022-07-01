@@ -48,6 +48,7 @@
     "got": "^11.8.5",
     "highlight.js": "^10.4.1",
     "prismjs": "^1.27.0",
+    "react-syntax-highlighter": "^15.5.0",
     "trim": "^0.0.3",
     "trim-newlines": "^3.0.1",
     "undici": "^5.5.1"
