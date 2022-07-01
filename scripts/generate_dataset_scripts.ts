@@ -63,7 +63,6 @@ const updateDataset = async (dataset, organization, apiUrl, homepage) => {
     execSync(`git add ${packageDir}`)
   }
   try {
-    console.log(gitStatus)
     execSync(`git commit -am "Updating ${datasetPackage}"`)
     execSync(
       `git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
