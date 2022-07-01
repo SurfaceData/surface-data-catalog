@@ -80,7 +80,7 @@ export default async ({ args }) => {
         `git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
       )
     } catch (error) {
-      console.log(error.stdout)
+      console.log(error.stdout.toString('utf8'))
       console.log(error.stderr)
     }
   })

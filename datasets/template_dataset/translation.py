@@ -12,7 +12,7 @@
 # limitations under the License.
 
 # Lint as: python3
-"""The Surface Data Collective Dataset."""
+"""The Surface Data Collective Translation Dataset."""
 
 import csv
 import json
