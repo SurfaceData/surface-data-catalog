@@ -19,6 +19,7 @@ const ProfileInfoPage = () => {
     steward: t('rolesSteward'),
     general: t('rolesGeneral'),
   }
+  const role = currentUser.roles ? currentUser.roles[0] : 'general'
   return (
     <>
       <MetaTags title="ProfileInfo" description="ProfileInfo page" />
@@ -44,11 +45,7 @@ const ProfileInfoPage = () => {
           <Trans i18nKey="translation.email">Email</Trans>
         </SurfaceTextField>
 
-        <SurfaceTextField
-          name="role"
-          readOnly
-          value={roleLabels[currentUser?.roles[0] || 'general']}
-        >
+        <SurfaceTextField name="role" readOnly value={roleLabels[role]}>
           <Trans i18nKey="translation.role">Role</Trans>
         </SurfaceTextField>
       </Form>
