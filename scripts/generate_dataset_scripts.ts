@@ -74,9 +74,13 @@ export default async ({ args }) => {
     if (gitStatus.not_added.length >= 0) {
       execSync(`git add ${packageDir}`)
     }
-    execSync(`git commit -am "Updating ${datasetPackage}"`)
-    execSync(
-      `git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
-    )
+    try {
+      execSync(`git commit -am "Updating ${datasetPackage}"`)
+      execSync(
+        `git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
+      )
+    } catch (error) {
+      console.log(error)
+    }
   })
 }
