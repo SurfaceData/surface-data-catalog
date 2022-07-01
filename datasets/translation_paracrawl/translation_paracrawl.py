@@ -31,8 +31,11 @@ config = json.loads("""
  "url": "https://catalog.api.surfacedata.org/download?dataset=paracrawl-{langpair}",
  "subsets": [
   {
-   "source_language": "en",
-   "target_language": "km"
+   "name": "en_km",
+   "languages": [
+    "en",
+    "km"
+   ]
   }
  ]
 }
@@ -42,31 +45,28 @@ _HOMEPAGE = config['homepage']
 _CITATION = config['citation']
 _DESCRIPTION = config['description']
 _LICENSE = config['license']
+_LANGUAGES = list(set([
+    language for subset in config["subsets"] for language in subset["languages"]
+    ]))
 _BASE_URL_FORMAT_STR = config['url']
 
 class SurfacePublicDatasetConfig(datasets.BuilderConfig):
     """BuildConfig for Surface Public Datasets."""
 
-    def __init__(self, source_language, target_language, **kwargs):
+    def __init__(self, name, languages, **kwargs):
         """BuilderConfig for Surface Public Datasets.
 
         Args:
           **kwargs: Keyword arguments forwarded to the BuilderConfig.
         """
-
-        lang_pair = "%s_%s" % (source_language, target_language)
-        description = ("Translation dataset for %s.") % (lang_pair)
-
+        description = ("Translation dataset for %s.") % (name)
         super(SurfacePublicDatasetConfig,
-                self).__init__(name=lang_pair,
-                        description=description,
-                        **kwargs)
+                self).__init__(name=name, description=description, **kwargs)
 
-        self.source_language = source_language
-        self.target_language = target_language
-        langpair = "%s_%s" %(source_language, target_language)
+        self.source_language = languages[0]
+        self.target_language = languages[1]
         self.data_url = _BASE_URL_FORMAT_STR.format(
-                langpair=langpair)
+                langpair=name)
         self.apikey = 'placeholder'
 
 
@@ -75,8 +75,8 @@ class SurfacePublicDataset(datasets.GeneratorBasedBuilder):
 
     BUILDER_CONFIGS = [
             SurfacePublicDatasetConfig(
-                source_language=subset['source_language'],
-                target_language=subset['target_language']) for subset in config['subsets']
+                name=subset['name'],
+                languages=subset['languages']) for subset in config['subsets']
             ]
 
     def _info(self):

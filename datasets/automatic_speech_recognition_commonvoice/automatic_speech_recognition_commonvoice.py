@@ -34,7 +34,10 @@ config = json.loads("""
  "url": "https://catalog.api.surfacedata.org/download?dataset=commonvoice-{langpair}",
  "subsets": [
   {
-   "source_language": "zh-TW"
+   "name": "zh-TW",
+   "languages": [
+    "zh-TW"
+   ]
   }
  ]
 }
