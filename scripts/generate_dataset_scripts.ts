@@ -55,18 +55,31 @@ const updateDataset = async (dataset, organization, apiUrl, homepage) => {
   )
   writeFileSync(`${packageDir}/${datasetPackage}.py`, result)
 
+  const languageSet = new Set(config.subsets.flatMap((s) => s.languages))
+  const readmeData = {
+    license: dataset.license,
+    task: dataset.task,
+    languages: [...languageSet],
+    content: 'Generic README contents',
+  }
+  const readmeResult = await renderFile(
+    `./datasets/template_dataset/README.md`,
+    readmeData
+  )
+  writeFileSync(`${packageDir}/README.md`, readmeResult)
+
   const gitStatus = await simpleGit().status([packageDir])
   if (gitStatus.modified.length == 0 && gitStatus.not_added.length == 0) {
     return
   }
   if (gitStatus.not_added.length >= 0) {
-    execSync(`git add ${packageDir}`)
+    // execSync(`git add ${packageDir}`)
   }
   try {
-    execSync(`git commit -am "Updating ${datasetPackage}"`)
-    execSync(
-      `git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
-    )
+    // execSync(`git commit -am "Updating ${datasetPackage}"`)
+    // execSync(
+    //`git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
+    // )
   } catch (error) {
     console.log(error.stdout.toString('utf8'))
     console.log(error.stderr.toString('utf8'))

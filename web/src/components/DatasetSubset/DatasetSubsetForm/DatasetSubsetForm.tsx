@@ -69,7 +69,6 @@ const DatasetSubsetForm = (props) => {
           name="upload"
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
 
         <FieldError name="path" className="rw-field-error" />
