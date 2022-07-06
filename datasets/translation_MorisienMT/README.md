@@ -31,4 +31,4 @@ and experiments were not done in a highly principled manner, which is required
 in the present day.  Therefore, we improve the quality of splits and officially
 release the data for people to use.
 
-To use this dataset, request access via the [Surface Catalog](catalog.surfacedata.org/).
+To use this dataset, request access via the [Surface Catalog](https://catalog.surfacedata.org/).
