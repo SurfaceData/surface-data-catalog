@@ -11,4 +11,4 @@ license:
 
 {{ content }}
 
-To use this dataset, request access via the [Surface Catalog](catalog.surfacedata.org/).
+To use this dataset, request access via the [Surface Catalog](https://catalog.surfacedata.org/).
