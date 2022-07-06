@@ -7,6 +7,6 @@ license:
   - cc0-1.0
 ---
 
-Generic README contents
+A test dataset for [Common Voice](https://commonvoice.mozilla.org/en)
 
 To use this dataset, request access via the [Surface Catalog](catalog.surfacedata.org/).
