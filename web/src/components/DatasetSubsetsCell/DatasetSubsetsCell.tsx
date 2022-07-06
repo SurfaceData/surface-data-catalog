@@ -84,7 +84,7 @@ export const Success = ({ datasetSubsets }: CellSuccessProps<DatasetSubsetsQuery
       data={datasetSubsets}
       rowKey={'id'}
       expandedRowKeys={expandedRowKeys}
-      fillHeight
+      autoHeight
       renderRowExpanded={renderRowExpanded}
       rowExpandedHeight={250}
     >
