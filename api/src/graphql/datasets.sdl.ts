@@ -8,7 +8,8 @@ export const schema = gql`
   }
 
   type Query {
-    datasets: [Dataset!]! @skipAuth
+    allDatasets: [Dataset!]! @skipAuth
+    datasets: [Dataset!]! @requireAuth
     dataset(id: String!): Dataset @requireAuth
   }
 

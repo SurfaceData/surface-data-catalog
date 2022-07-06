@@ -1,8 +1,24 @@
 import { db } from 'src/lib/db'
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
-export const downloadLogs: QueryResolvers['downloadLogs'] = () => {
-  return db.downloadLog.findMany()
+export const downloadLogs: QueryResolvers['downloadLogs'] = (
+  args,
+  { root, context, info }
+) => {
+  const userId = context.currentUser.sub
+  return db.downloadLog.findMany({
+    where: {
+      dataset: {
+        dataset: {
+          steward: {
+            some: {
+              id: userId,
+            },
+          },
+        },
+      },
+    },
+  })
 }
 
 export const userDownloadLogs: QueryResolvers['downloadLogs'] = (

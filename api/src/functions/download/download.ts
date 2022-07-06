@@ -68,8 +68,12 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     await db.downloadLog.create({
       data: {
         userId: userApiKey.id,
-        datasetId: datasetSubsetId,
         statusCode: 403,
+        connect: {
+          dataset: {
+            id: datasetSubsetId,
+          },
+        },
       },
     })
     return {

@@ -9,8 +9,9 @@ generator client {
 }
 
 model UserRoles {
-  id    String @id
-  role  String
+  id       String @id
+  role     String
+  datasets Dataset[]
 }
 
 model Dataset {
@@ -20,6 +21,8 @@ model Dataset {
   license   String
   readme    String @default("")
   subsets   DatasetSubset[]
+  steward   UserRoles[]
+  access    DatasetAccess[]
 }
 
 model DatasetSubset {
@@ -28,12 +31,14 @@ model DatasetSubset {
   path      String
   dataset   Dataset @relation(fields: [datasetId], references: [id])
   datasetId String
+  download  DownloadLog[]
 }
 
 model DatasetAccess {
   id        Int @id  @default(autoincrement())
   userId    String
   datasetId String
+  dataset   Dataset @relation(fields: [datasetId], references: [id])
   // 0 - Unknown
   // 1 - Requested
   // 2 - Rejected
@@ -54,6 +59,7 @@ model DownloadLog {
   id         Int @id @default(autoincrement())
   userId     String
   datasetId  String
+  dataset    DatasetSubset @relation(fields: [datasetId], references: [id])
   // 0 - Unknown
   // 1 - Accepted
   // 2 - Rejected

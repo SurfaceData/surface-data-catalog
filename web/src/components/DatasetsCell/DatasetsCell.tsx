@@ -6,7 +6,7 @@ import DatasetPanel from 'src/components/DatasetPanel'
 
 export const QUERY = gql`
   query DatasetsQuery {
-    datasets {
+    allDatasets {
       id
       name
       task
@@ -23,10 +23,10 @@ export const Loading = () => <div>Loading...</div>
     <div style={{ color: 'red' }}>Error: {error.message}</div>
   )
 
-export const Success = ({ datasets }: CellSuccessProps<DatasetsQuery>) => {
+export const Success = ({ allDatasets }: CellSuccessProps<DatasetsQuery>) => {
   return (
     <Stack wrap spacing={8}>
-      {datasets.map((item) => {
+      {allDatasets.map((item) => {
         return (
           <DatasetPanel key={item.id} dataset={item} />
         )

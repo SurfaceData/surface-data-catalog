@@ -1,8 +1,24 @@
 import { db } from 'src/lib/db'
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
-export const datasets: QueryResolvers['datasets'] = () => {
+export const allDatasets: QueryResolvers['datasets'] = () => {
   return db.dataset.findMany()
+}
+
+export const datasets: QueryResolvers['datasets'] = (
+  args,
+  { root, context, info }
+) => {
+  const userId = context.currentUser.sub
+  return db.dataset.findMany({
+    where: {
+      steward: {
+        some: {
+          id: userId,
+        },
+      },
+    },
+  })
 }
 
 export const dataset: QueryResolvers['dataset'] = ({ id }) => {
@@ -11,11 +27,18 @@ export const dataset: QueryResolvers['dataset'] = ({ id }) => {
   })
 }
 
-export const createDataset: MutationResolvers['createDataset'] = ({
-  input,
-}) => {
+export const createDataset: MutationResolvers['createDataset'] = (
+  { input },
+  { root, context, info }
+) => {
+  const userId = context.currentUser.sub
   return db.dataset.create({
-    data: input,
+    data: {
+      ...input,
+      steward: {
+        connect: [{ id: userId }],
+      },
+    },
   })
 }
 
