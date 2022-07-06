@@ -8,6 +8,6 @@ license:
   - cc-by-sa-4.0
 ---
 
-Generic README contents
+Created as a test dataset for the [Paracrawl](https://paracrawl.eu/) corpus.
 
 To use this dataset, request access via the [Surface Catalog](catalog.surfacedata.org/).
