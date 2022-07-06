@@ -9,4 +9,4 @@ license:
 
 A test dataset for [Common Voice](https://commonvoice.mozilla.org/en)
 
-To use this dataset, request access via the [Surface Catalog](catalog.surfacedata.org/).
+To use this dataset, request access via the [Surface Catalog](https://catalog.surfacedata.org/).
