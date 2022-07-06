@@ -29,7 +29,7 @@ config = json.loads("""
  "citation": "",
  "description": "",
  "homepage": "https://www.surfacedata.org",
- "license": "cc-0",
+ "license": "cc0-1.0",
  "version": "cv-corpus-8.0-2022-01-19",
  "url": "https://catalog.api.surfacedata.org/download?dataset=commonvoice-{langpair}",
  "subsets": [
