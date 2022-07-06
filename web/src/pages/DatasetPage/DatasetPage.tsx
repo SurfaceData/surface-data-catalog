@@ -1,6 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import PublicDatasetDetailsCell from 'src/components/PublicDatasetDetailsCell'
 import DatasetSubsetsCell from 'src/components/DatasetSubsetsCell'
 
 const DatasetPage = ({id}) => {
@@ -8,7 +9,7 @@ const DatasetPage = ({id}) => {
     <>
       <MetaTags title="Dataset" description="Dataset page" />
 
-      <h1>{id}</h1>
+      <PublicDatasetDetailsCell id={id} />
 
       <DatasetSubsetsCell datasetId={id} />
     </>

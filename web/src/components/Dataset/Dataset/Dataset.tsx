@@ -1,8 +1,7 @@
-import humanize from 'humanize-string'
-
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
+import ReactMarkdown from 'react-markdown'
 
 import DatasetSubsetsCell from 'src/components/DatasetSubset/DatasetSubsetsCell'
 
@@ -14,41 +13,7 @@ const DELETE_DATASET_MUTATION = gql`
   }
 `
 
-const formatEnum = (values: string | string[] | null | undefined) => {
-  if (values) {
-    if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
-    } else {
-      return humanize(values as string)
-    }
-  }
-}
-
-const jsonDisplay = (obj) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(obj, null, 2)}</code>
-    </pre>
-  )
-}
-
-const timeTag = (datetime) => {
-  return (
-    datetime && (
-      <time dateTime={datetime} title={datetime}>
-        {new Date(datetime).toUTCString()}
-      </time>
-    )
-  )
-}
-
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
-
 const Dataset = ({ dataset }) => {
-  console.log(dataset)
   const [deleteDataset] = useMutation(DELETE_DATASET_MUTATION, {
     onCompleted: () => {
       toast.success('Dataset deleted')
@@ -87,7 +52,7 @@ const Dataset = ({ dataset }) => {
               <td>{dataset.license}</td>
             </tr><tr>
               <th>README</th>
-              <td>{dataset.readme}</td>
+              <td><ReactMarkdown>{dataset.readme}</ReactMarkdown></td>
             </tr>
           </tbody>
         </table>
