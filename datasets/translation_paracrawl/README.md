@@ -10,4 +10,4 @@ license:
 
 Created as a test dataset for the [Paracrawl](https://paracrawl.eu/) corpus.
 
-To use this dataset, request access via the [Surface Catalog](catalog.surfacedata.org/).
+To use this dataset, request access via the [Surface Catalog](https://catalog.surfacedata.org/).
