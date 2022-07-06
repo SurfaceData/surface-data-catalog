@@ -26,7 +26,7 @@ config = json.loads("""
  "citation": "",
  "description": "",
  "homepage": "https://www.surfacedata.org",
- "license": "cc-by-sa",
+ "license": "cc-by-sa-4.0",
  "version": "cv-corpus-8.0-2022-01-19",
  "url": "https://catalog.api.surfacedata.org/download?dataset=paracrawl-{langpair}",
  "subsets": [
