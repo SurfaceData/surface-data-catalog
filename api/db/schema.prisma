@@ -14,11 +14,12 @@ model UserRoles {
 }
 
 model Dataset {
-  id       String @id
-  name     String
-  task     String
-  license  String
-  subsets  DatasetSubset[]
+  id        String @id
+  name      String
+  task      String
+  license   String
+  readme    String @default("")
+  subsets   DatasetSubset[]
 }
 
 model DatasetSubset {

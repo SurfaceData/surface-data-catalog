@@ -73,13 +73,13 @@ const updateDataset = async (dataset, organization, apiUrl, homepage) => {
     return
   }
   if (gitStatus.not_added.length >= 0) {
-    // execSync(`git add ${packageDir}`)
+    execSync(`git add ${packageDir}`)
   }
   try {
-    // execSync(`git commit -am "Updating ${datasetPackage}"`)
-    // execSync(
-    //`git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
-    // )
+    execSync(`git commit -am "Updating ${datasetPackage}"`)
+    execSync(
+      `git subtree push --prefix datasets/${datasetPackage} ${datasetPackage} main`
+    )
   } catch (error) {
     console.log(error.stdout.toString('utf8'))
     console.log(error.stderr.toString('utf8'))

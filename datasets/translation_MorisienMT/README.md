@@ -14,9 +14,6 @@ Finally, we also provide a Creole monolingual corpus of 45,364 lines.
 Note that a significant portion of the dataset is a dictionary of word
 pairs/triplets, nevertheless it is a start.
 
-To use this dataset, request access via the
- [Surface Catalog](https://catalog.surfacedata.org/).
-
 Feel free to use the dataset for your research but don't forget to attribute
 our upcoming paper which will be uploaded to arxiv shortly.
 

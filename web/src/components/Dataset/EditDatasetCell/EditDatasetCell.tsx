@@ -14,6 +14,7 @@ export const QUERY = gql`
       name
       task
       license
+      readme
     }
   }
 `
@@ -24,6 +25,7 @@ const UPDATE_DATASET_MUTATION = gql`
       name
       task
       license
+      readme
     }
   }
 `

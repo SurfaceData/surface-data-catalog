@@ -85,6 +85,9 @@ const Dataset = ({ dataset }) => {
             </tr><tr>
               <th>License</th>
               <td>{dataset.license}</td>
+            </tr><tr>
+              <th>README</th>
+              <td>{dataset.readme}</td>
             </tr>
           </tbody>
         </table>

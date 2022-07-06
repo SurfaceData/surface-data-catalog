@@ -4,6 +4,7 @@ export const schema = gql`
     name: String!
     task: String!
     license: String!
+    readme: String
   }
 
   type Query {
@@ -16,12 +17,14 @@ export const schema = gql`
     name: String!
     task: String!
     license: String!
+    readme: String!
   }
 
   input UpdateDatasetInput {
     name: String
     task: String
     license: String
+    readme: String
   }
 
   type Mutation {

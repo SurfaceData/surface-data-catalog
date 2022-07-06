@@ -10,6 +10,7 @@ export const QUERY = gql`
       name
       task
       license
+      readme
     }
   }
 `

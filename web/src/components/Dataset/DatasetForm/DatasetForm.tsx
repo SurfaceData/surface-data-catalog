@@ -3,9 +3,11 @@ import {
   FormError,
   FieldError,
   Label,
+  TextAreaField,
   TextField,
   Submit,
 } from '@redwoodjs/forms'
+import { Input } from 'rsuite'
 
 const DatasetForm = (props) => {
   const onSubmit = (data) => {
@@ -75,6 +77,22 @@ const DatasetForm = (props) => {
         />
 
         <FieldError name="license" className="rw-field-error" />
+
+        <Label
+          name="readme"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          README
+        </Label>
+
+        <TextAreaField
+          name="readme"
+          defaultValue={props.dataset?.readme}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
