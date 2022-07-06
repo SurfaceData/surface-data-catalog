@@ -60,7 +60,7 @@ const updateDataset = async (dataset, organization, apiUrl, homepage) => {
     license: dataset.license,
     task: dataset.task,
     languages: [...languageSet],
-    content: 'Generic README contents',
+    content: dataset.readme,
   }
   const readmeResult = await renderFile(
     `./datasets/template_dataset/README.md`,
