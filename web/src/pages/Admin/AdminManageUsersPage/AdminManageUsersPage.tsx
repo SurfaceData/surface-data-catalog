@@ -11,21 +11,21 @@ const AdminManageUsersPage = () => {
     <>
       <MetaTags title="AdminManageUsers" description="AdminManageUsers page" />
 
-      <SurfaceHeader2>
-        <Trans i18key="layoutes.adminManageUsers">Manage Users</Trans>
-      </SurfaceHeader2>
-
-      <SurfaceDetails>
-        <SurfaceSummary>How to manage users</SurfaceSummary>
-        <div>
-          <Trans i18key="translation.manageUsersSummary">
-            Managing users means setting their permissions.  Choose the right
-            level of access for each user.
-          </Trans>
-        </div>
-      </SurfaceDetails>
-
       <div>
+        <SurfaceHeader2>
+          <Trans i18key="layoutes.adminManageUsers">Manage Users</Trans>
+        </SurfaceHeader2>
+
+        <SurfaceDetails>
+          <SurfaceSummary>How to manage users</SurfaceSummary>
+          <div>
+            <Trans i18key="translation.manageUsersSummary">
+              Managing users means setting their permissions.  Choose the right
+              level of access for each user.
+            </Trans>
+          </div>
+        </SurfaceDetails>
+
         <UsersCell />
       </div>
     </>

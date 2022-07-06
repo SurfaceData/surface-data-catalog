@@ -118,7 +118,7 @@ export const Success = ({ users }: CellSuccessProps<UsersQuery>) => {
   }
 
   return (
-    <Table data={userList}>
+    <Table data={userList} height={300}>
       <Table.Column width={300}>
         <Table.HeaderCell>
           <Trans i18nKey="translation.email">Email</Trans>
