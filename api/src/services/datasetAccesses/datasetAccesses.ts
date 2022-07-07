@@ -2,7 +2,7 @@ import { db } from 'src/lib/db'
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 const updateIfExpired = (access) => {
-  if (access.status != 3 || !access.expiration) {
+  if (!access || access.status != 3 || !access.expiration) {
     return access
   }
   const expiration = new Date(access.expiration)

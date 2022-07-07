@@ -10,7 +10,6 @@ export const QUERY = gql`
     datasetSubsets(datasetId: $datasetId) {
       id
       language
-      path
       datasetId
     }
   }
