@@ -91,10 +91,6 @@ const SurfaceFooter = () => {
         <SocialIcon target="_blank" href="https://twitter.com/SurfaceData">
           <ImTwitter size={16} />
         </SocialIcon>
-
-        <SocialIcon target="_blank" href={process.env.DISCORD_URL}>
-          <FaDiscord size={16} />
-        </SocialIcon>
       </SocialIconContainer>
     </StyledFooter>
   )
