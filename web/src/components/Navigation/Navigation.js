@@ -46,7 +46,7 @@ const UserItem = () => {
         <Dropdown.Item as={RedwoodLink} to={routes.profileInfo()}>
           <Trans i18nKey="layouts.profile">Profile</Trans>
         </Dropdown.Item>
-        {hasRole('steward') && (
+        {hasRole(['admin', 'steward']) && (
           <Dropdown.Item as={RedwoodLink} to={routes.stewardReview()}>
             <Trans i18nKey="layouts.steward">Steward</Trans>
           </Dropdown.Item>

@@ -20,7 +20,7 @@ const Routes = () => {
           <Route path="/profile/download-logs" page={ProfileProfileDownloadLogsPage} name="profileDownloadLogs" />
         </Set>
       </Private>
-      <Private unauthenticated="home" roles="steward">
+      <Private unauthenticated="home" roles={['admin', 'steward']}>
         <Set wrap={StewardLayout}>
           <Route path="/steward/review" page={StewardStewardReviewPage} name="stewardReview" />
           <Route path="/steward/datasets" page={StewardDatasetsPage} name="datasets" />
