@@ -1,4 +1,11 @@
 export const schema = gql`
+  type PublicDatasetSubset {
+    id: String!
+    language: String!
+    dataset: Dataset!
+    datasetId: String!
+  }
+
   type DatasetSubset {
     id: String!
     language: String!
@@ -8,7 +15,7 @@ export const schema = gql`
   }
 
   type Query {
-    datasetSubsets(datasetId: String!): [DatasetSubset!]! @requireAuth
+    datasetSubsets(datasetId: String!): [PublicDatasetSubset!]! @skipAuth
     datasetSubset(id: String!): DatasetSubset @requireAuth
   }
 

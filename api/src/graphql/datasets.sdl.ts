@@ -10,7 +10,7 @@ export const schema = gql`
   type Query {
     allDatasets: [Dataset!]! @skipAuth
     datasets: [Dataset!]! @requireAuth
-    dataset(id: String!): Dataset @requireAuth
+    dataset(id: String!): Dataset @skipAuth
   }
 
   input CreateDatasetInput {

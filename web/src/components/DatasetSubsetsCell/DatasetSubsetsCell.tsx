@@ -1,4 +1,5 @@
 import type { DatasetSubsetsQuery } from 'types/graphql'
+import { useAuth } from '@redwoodjs/auth'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import MinusRoundIcon from '@rsuite/icons/MinusRound'
 import PlusRoundIcon from '@rsuite/icons/PlusRound'
@@ -37,7 +38,7 @@ const ExpandCell = ({ rowData, dataKey, expandedRowKeys, onChange, ...props }) =
       onClick={() => {onChange(rowData)}}
       icon={
         expandedRowKeys.some((key) =>
-        key === rowData['id']) ? <MinusRoundIcon /> : <PlusRoundIcon />
+          key === rowData['id']) ? <MinusRoundIcon /> : <PlusRoundIcon />
       }
     />
   </Table.Cell>
@@ -61,6 +62,7 @@ const ActionCell = ({ rowData, ...props }) => {
 }
 
 export const Success = ({ datasetSubsets }: CellSuccessProps<DatasetSubsetsQuery>) => {
+  const { isAuthenticated } = useAuth()
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
 
   const handleExpanded = (rowData, rowKey) => {
@@ -88,10 +90,12 @@ export const Success = ({ datasetSubsets }: CellSuccessProps<DatasetSubsetsQuery
       renderRowExpanded={renderRowExpanded}
       rowExpandedHeight={250}
     >
-      <Table.Column width={50} align="center">
-        <Table.HeaderCell>#</Table.HeaderCell>
-        <ExpandCell dataKey="id" expandedRowKeys={expandedRowKeys} onChange={handleExpanded} />
-      </Table.Column>
+      {isAuthenticated && (
+        <Table.Column width={50} align="center">
+          <Table.HeaderCell>#</Table.HeaderCell>
+          <ExpandCell dataKey="id" expandedRowKeys={expandedRowKeys} onChange={handleExpanded} />
+        </Table.Column>
+      )}
 
       <Table.Column width={200}>
         <Table.HeaderCell>
@@ -107,12 +111,14 @@ export const Success = ({ datasetSubsets }: CellSuccessProps<DatasetSubsetsQuery
         <Table.Cell dataKey="language" />
       </Table.Column>
 
-      <Table.Column width={200}>
-        <Table.HeaderCell>
-          Download Link
-        </Table.HeaderCell>
-        <ActionCell />
-      </Table.Column>
+      { isAuthenticated && (
+        <Table.Column width={200}>
+          <Table.HeaderCell>
+            Download Link
+          </Table.HeaderCell>
+          <ActionCell />
+        </Table.Column>
+      )}
     </Table>
   )
 }

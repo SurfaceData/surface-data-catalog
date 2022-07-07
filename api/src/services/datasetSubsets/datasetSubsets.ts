@@ -12,6 +12,12 @@ export const datasetSubsets: QueryResolvers['datasetSubsets'] = ({
 }) => {
   return db.datasetSubset.findMany({
     where: { datasetId },
+    select: {
+      id: true,
+      language: true,
+      dataset: true,
+      datasetId: true,
+    },
   })
 }
 

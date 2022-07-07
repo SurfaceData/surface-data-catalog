@@ -9,18 +9,10 @@ import UserApiKeyCell from 'src/components/UserApiKeyCell'
 const HomePage = () => {
   const { isAuthenticated } = useAuth()
   return (
-    <>
-      {isAuthenticated ? (
-        <div>
-          <UserApiKeyCell />
-          <DatasetsCell />
-        </div>
-      ) : (
-        <div>
-          <Trans i18nKey="homeUnauthenticated">Unauthenticated View</Trans>
-        </div>
-      )}
-    </>
+    <div>
+      {isAuthenticated && <UserApiKeyCell />}
+      <DatasetsCell />
+    </div>
   )
 }
 

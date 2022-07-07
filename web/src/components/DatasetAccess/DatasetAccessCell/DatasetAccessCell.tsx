@@ -35,11 +35,6 @@ export const Success = ({
     3: 'Granted',
   }
   return (
-    <div>
-      <div>Request Status: {accessLabels[datasetAccess.status]}</div>
-      {datasetAccess.status === 3 && (
-        <Link to={routes.dataset({ id: datasetId })}>Details</Link>
-      )}
-    </div>
+    <div>Request Status: {accessLabels[datasetAccess.status]}</div>
   )
 }
