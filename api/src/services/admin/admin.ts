@@ -19,12 +19,14 @@ export const users = async () => {
 }
 
 export const updateUserRole = async ({ id, role }) => {
-  console.log(id)
-  console.log(role)
-  return await db.userRoles.update({
-    data: {
-      role: role,
-    },
+  return await db.userRoles.upsert({
     where: { id },
+    update: {
+      role,
+    },
+    create: {
+      id,
+      role,
+    },
   })
 }

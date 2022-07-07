@@ -14,7 +14,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       <Header>
         <Navbar>
           <Navbar.Brand as={RedwoodLink} to={routes.home()}>
-            <Trans i18nKey="layouts.brand">Surface Redwood Template</Trans>
+            <Trans i18nKey="layouts.brand">Surface Data Catalog</Trans>
           </Navbar.Brand>
         </Navbar>
       </Header>
