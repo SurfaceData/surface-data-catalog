@@ -15,14 +15,18 @@ model UserRoles {
 }
 
 model Dataset {
-  id        String @id
-  name      String
-  task      String
-  license   String
-  readme    String @default("")
-  subsets   DatasetSubset[]
-  steward   UserRoles[]
-  access    DatasetAccess[]
+  id               String @id
+  name             String
+  task             String
+  license          String
+  readme           String @default("")
+  // Dataset Access permissions will expire `expirationInDays` after
+  // being granted.  When this is set to 0 then permissions will never
+  // automatically expire.
+  expirationInDays Int @default(0)
+  subsets          DatasetSubset[]
+  steward          UserRoles[]
+  access           DatasetAccess[]
 }
 
 model DatasetSubset {
@@ -35,15 +39,17 @@ model DatasetSubset {
 }
 
 model DatasetAccess {
-  id        Int @id  @default(autoincrement())
-  userId    String
-  datasetId String
-  dataset   Dataset @relation(fields: [datasetId], references: [id])
+  id         Int @id  @default(autoincrement())
+  userId     String
+  datasetId  String
+  dataset    Dataset @relation(fields: [datasetId], references: [id])
   // 0 - Unknown
   // 1 - Requested
   // 2 - Rejected
   // 3 - Accepted
-  status    Int @default(0)
+  // 4 - Expired
+  status     Int @default(0)
+  expiration DateTime?
 
   @@unique([userId, datasetId])
 }

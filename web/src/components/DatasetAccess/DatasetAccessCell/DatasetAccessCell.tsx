@@ -33,6 +33,7 @@ export const Success = ({
     1: 'Requested',
     2: 'Rejected',
     3: 'Granted',
+    4: 'Expired',
   }
   return (
     <div>Request Status: {accessLabels[datasetAccess.status]}</div>

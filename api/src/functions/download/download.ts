@@ -64,16 +64,12 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       statusCode: 404,
     }
   }
-  if (datasetAccess.status != 3) {
+  if (datasetAccess.status != 3 || !isAccessValid(datasetAccess)) {
     await db.downloadLog.create({
       data: {
         userId: userApiKey.id,
         statusCode: 403,
-        connect: {
-          dataset: {
-            id: datasetSubsetId,
-          },
-        },
+        datasetId: datasetSubsetId,
       },
     })
     return {
@@ -105,4 +101,12 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       Location: url,
     },
   }
+}
+
+const isAccessValid = (datasetAccess) => {
+  if (!datasetAccess.expiration) {
+    return true
+  }
+  const expiration = new Date(datasetAccess.expiration)
+  return Date.now() < expiration
 }

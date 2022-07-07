@@ -42,6 +42,7 @@ const DatasetAccessReviewForm = ({ request }) => {
         <option value="1">Requested</option>
         <option value="2">Reject</option>
         <option value="3">Approve</option>
+        <option value="4">Expired</option>
       </SelectField>
 
       <SurfaceSubmit $rounded $outline>
